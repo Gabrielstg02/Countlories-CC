@@ -1,0 +1,24 @@
+{
+  "name": "countlories-cc",
+  "version": "1.0.0",
+  "description": "This repository is used as working repository for cloud computing side of the Countlories project as part of Bangkit 2023's Product-based Project.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "start-dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql2": "^3.3.2",
+    "sequelize": "^6.31.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
