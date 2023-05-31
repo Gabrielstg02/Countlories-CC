@@ -1,4 +1,5 @@
 const { User } = require("../models/user");
+const ResponseClass = require("../utils/response.js");
 
 const getAllUsers = async () => {
   var responseError = new ResponseClass.ErrorResponse();

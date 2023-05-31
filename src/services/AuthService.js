@@ -1,7 +1,8 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const ResponseClass = require("../utils/response.js");
 const { User } = require("../models/user");
-const { validatePassword } = require("../models/password.model.js");
+const { validatePassword } = require("../utils/password.js");
 const { v4: uuidv4 } = require("uuid");
 
 const registerUser = async (requestBody) => {
@@ -134,7 +135,7 @@ const loginUser = async (requestBody) => {
   }
 };
 
-const logoutUser = async (requestBody) => {
+const logoutUser = async (refreshToken) => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessWithNoDataResponse();
 
@@ -145,9 +146,6 @@ const logoutUser = async (requestBody) => {
   }
 
   try {
-    const requestCookie = requestBody.split("=");
-    const refreshToken = requestCookie[1];
-
     const loginUser = await User.findOne({
       where: { refresh_token: refreshToken },
     });

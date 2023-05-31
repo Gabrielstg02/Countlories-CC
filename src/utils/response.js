@@ -16,7 +16,7 @@ class SuccessResponse {
 }
 
 class SuccessWithNoDataResponse {
-  constructor(status = true, code = 200, message = "", data = null) {
+  constructor(status = true, code = 200, message = "") {
     this.status = status;
     this.code = code;
     this.message = message;

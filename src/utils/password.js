@@ -1,7 +1,7 @@
-import PasswordValidator from "password-validator";
+const PasswordValidator = require("password-validator");
 
 //validate password user schema using password-validator package
-export const validatePassword = (userEmail, showDetails) => {
+const validatePassword = (userEmail, showDetails) => {
   const schema = new PasswordValidator();
   schema
     .is()

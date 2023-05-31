@@ -1,10 +1,10 @@
-const UsersService = require("../services/UserService.js");
-const ResponseClass = require("../models/response.model.js");
+const AuthService = require("../services/AuthService.js");
+const ResponseClass = require("../utils/response.js");
 
 //register function
 const register = async (req, res) => {
   try {
-    res.json(await UsersService.registerUsers(req.body));
+    res.json(await AuthService.registerUser(req.body));
   } catch (error) {
     console.log(error);
   }
@@ -13,7 +13,7 @@ const register = async (req, res) => {
 //login function
 const login = async (req, res) => {
   try {
-    var loginResult = await UsersService.loginUsers(req.body);
+    var loginResult = await AuthService.loginUser(req.body);
 
     //if login result is success
     if (loginResult.code == 200) {
@@ -44,22 +44,18 @@ const login = async (req, res) => {
   }
 };
 
-//logout function
-const logout = async (req, res) => {
+const logout = async (req, res, next) => {
   try {
-    var responseSuccess = new ResponseClass.SuccessWithNoDataResponse();
+    var logoutResult = await AuthService.logoutUser(req.headers.cookie);
 
-    //return response cookie with refresh_token
-    res.cookie("refreshToken", "", {
-      maxAge: 0,
-    });
+    if (logoutResult.code == 200) {
+      res.clearCookie("refreshToken");
+    }
 
-    //return response
-    responseSuccess.message = "Logout Success";
-
-    res.json(responseSuccess);
+    res.json(logoutResult);
   } catch (error) {
     console.log(error);
+    next(error);
   }
 };
 
