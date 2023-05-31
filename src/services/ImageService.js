@@ -7,11 +7,11 @@ const path = require("path");
 const pathKey = path.resolve("./serviceaccountkey.json");
 
 const gcs = new Storage({
-  projectId: "submission-mgce-cahya-gumilang",
+  projectId: "capstone-countlories",
   keyFilename: pathKey,
 });
 
-const bucketName = "submission-mgce-cahya-gumilang";
+const bucketName = "countlories-bucket";
 const bucket = gcs.bucket(bucketName);
 
 const getPublicUrl = (filename) => {
