@@ -34,3 +34,12 @@ This repository is used as working repository for cloud computing side of the Co
     - Copy the content of your service account key to `serviceaccountkey.json` with the access of Google Storage Object Admin for your bucket
 
 * To Be Continued
+
+## Contact
+|            Member           				| Student ID |                                                       Contacts                                                      |
+| :---------------------------------------: | :--------: | :-----------------------------------------------------------------------------------------------------------------: |
+|     Gabriel Solomon Sitanggang     | C038DSX0922  |              [LinkedIn](https://www.linkedin.com/in/gabriel-solomon-sitanggang/), [GitHub](https://github.com/Gabrielstg02/)|
+| Cahya Gumilang  | C309DSX2194  |     [LinkedIn](https://www.linkedin.com/in/cahya-gumilang), [GitHub](https://github.com/CahyaG)|
+
+## Project Link
+[Countlories Landing Page](https://github.com/IpunkDkk/Countlories)
