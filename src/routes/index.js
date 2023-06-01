@@ -53,21 +53,21 @@ router.put(
 router.delete("/menus/:id", verifyToken, MenuController.deleteMenu);
 
 /** Router Blog */
-router.get("/blogs", MenuController.getAllBlog);
-router.get("/blogs/:id", MenuController.getBlogById);
+router.get("/blogs", BlogController.getAllBlogs);
+router.get("/blogs/:id", BlogController.getBlogById);
 router.post(
   "/blogs",
   verifyToken,
   multer.single("image"),
-  MenuController.createBlog
+  BlogController.createBlog
 );
 router.put(
   "/blogs/:id",
   verifyToken,
   multer.single("image"),
-  MenuController.updateBlog
+  BlogController.updateBlog
 );
-router.delete("/blogs/:id", verifyToken, MenuController.deleteBlog);
+router.delete("/blogs/:id", verifyToken, BlogController.deleteBlog);
 
 /* Error handler middleware */
 // incase we forgot to impelement error handler in our controller/services
