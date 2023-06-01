@@ -30,7 +30,6 @@ This repository is used as working repository for cloud computing side of the Co
     - help: `npx sequelize-cli help`
 
 * Cloud Bucket Configuration
-    - Change Google Cloud Bucket Configuration in `src/services/ImageService.js`
     - Copy the `serviceaccountkey.example.json` file and rename it to `serviceaccountkey.json`
     - Copy the content of your service account key to `serviceaccountkey.json` with the access of Google Storage Object Admin for your bucket
 

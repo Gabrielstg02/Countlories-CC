@@ -7,11 +7,11 @@ const path = require("path");
 const pathKey = path.resolve("./serviceaccountkey.json");
 
 const gcs = new Storage({
-  projectId: "capstone-countlories",
+  projectId: process.env.GCLOUD_PROJECT_ID,
   keyFilename: pathKey,
 });
 
-const bucketName = "countlories-bucket";
+const bucketName = process.env.GCLOUD_STORAGE_BUCKET;
 const bucket = gcs.bucket(bucketName);
 
 const getPublicUrl = (filename) => {
