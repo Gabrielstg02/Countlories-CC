@@ -20,6 +20,12 @@ const getMenuById = async (req, res) => {
 
 const deleteMenu = async (req, res) => {
   try {
+    const menu = await MenuService.getMenuById(req.params.id);
+    const filename = ImageService.getFilename(menu.data.image);
+    const deleteImage = ImageService.deleteFromGcs(filename);
+    if (deleteImage.status !== 200) {
+      return res.json(deleteImage);
+    }
     res.json(await MenuService.deleteMenu(req.params.id));
   } catch (error) {
     console.log(error);

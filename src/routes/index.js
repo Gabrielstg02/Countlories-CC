@@ -5,6 +5,7 @@ const {
   AuthController,
   UserController,
   MenuController,
+  BlogController,
 } = require("../controllers");
 const { verifyToken } = require("../middlewares/verifiyToken.js");
 
@@ -18,11 +19,14 @@ router.post("/login", AuthController.login);
 router.post("/logout", AuthController.logout);
 
 /** Router User */
-router.get("/user/:id", UserController.getUserById);
-router.get("/user/:id/history", UserController.getUserHistory);
-router.get("/user/:id/favorite", UserController.getUserFavorite);
+router.get("/users", UserController.getAllUsers);
+router.get("/users/:id", UserController.getUserById);
+router.get("/users/:id/history", UserController.getUserHistory);
+router.get("/users/:id/favorite", UserController.getUserFavorite);
+router.delete("/users/:id", verifyToken, UserController.deleteUser);
+router.put("/users/:id", verifyToken, UserController.updateUser);
 
-/** Router User (Protected) */
+/** Router Current User */
 router.get("/user", verifyToken, UserController.getCurrentUser);
 router.get("/user/history", verifyToken, UserController.getCurrentUserHistory);
 router.get(
@@ -30,26 +34,40 @@ router.get(
   verifyToken,
   UserController.getCurrentUserFavorite
 );
-router.get("/users", verifyToken, UserController.getAllUsers);
-router.delete("/user/:id", verifyToken, UserController.deleteUser);
-router.put("/user/:id", verifyToken, UserController.updateUser);
 
 /** Router Menu */
-router.get("/menu", MenuController.getAllMenu);
-router.get("/menu/:id", MenuController.getMenuById);
+router.get("/menus", MenuController.getAllMenu);
+router.get("/menus/:id", MenuController.getMenuById);
 router.post(
-  "/menu",
+  "/menus",
   verifyToken,
   multer.single("image"),
   MenuController.createMenu
 );
 router.put(
-  "/menu/:id",
+  "/menus/:id",
   verifyToken,
   multer.single("image"),
   MenuController.updateMenu
 );
-router.delete("/menu/:id", verifyToken, MenuController.deleteMenu);
+router.delete("/menus/:id", verifyToken, MenuController.deleteMenu);
+
+/** Router Blog */
+router.get("/blogs", MenuController.getAllBlog);
+router.get("/blogs/:id", MenuController.getBlogById);
+router.post(
+  "/blogs",
+  verifyToken,
+  multer.single("image"),
+  MenuController.createBlog
+);
+router.put(
+  "/blogs/:id",
+  verifyToken,
+  multer.single("image"),
+  MenuController.updateBlog
+);
+router.delete("/blogs/:id", verifyToken, MenuController.deleteBlog);
 
 /* Error handler middleware */
 // incase we forgot to impelement error handler in our controller/services
