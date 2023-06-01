@@ -1,5 +1,6 @@
 const BlogService = require("../services/BlogService");
 const ImageService = require("../services/ImageService");
+const RequestValidator = require("../utils/request");
 
 const getAllBlogs = async (req, res) => {
   try {
@@ -54,6 +55,14 @@ const updateBlog = async (req, res) => {
 
 const createBlog = async (req, res) => {
   try {
+    const validate = RequestValidator.createBlog(req.body, [
+      "image",
+      "title",
+      "content",
+    ]);
+    if (validate !== true) {
+      return res.json(validate);
+    }
     const uploadImage = ImageService.uploadToGcs(req, "Blog");
     if (uploadImage.status !== 200) {
       return res.json(uploadImage);

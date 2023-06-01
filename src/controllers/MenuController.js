@@ -1,6 +1,6 @@
 const MenuService = require("../services/MenuService");
 const ImageService = require("../services/ImageService");
-const ResponseClass = require("../utils/response");
+const RequestValidator = require("../utils/request");
 
 const getAllMenu = async (req, res) => {
   try {
@@ -55,6 +55,15 @@ const updateMenu = async (req, res) => {
 
 const createMenu = async (req, res) => {
   try {
+    const validate = RequestValidator.createMenu(req.body, [
+      "name",
+      "kkal",
+      "description",
+      "image",
+    ]);
+    if (validate !== true) {
+      return res.json(validate);
+    }
     const uploadImage = ImageService.uploadToGcs(req, "Menu");
     if (uploadImage.status !== 200) {
       return res.json(uploadImage);

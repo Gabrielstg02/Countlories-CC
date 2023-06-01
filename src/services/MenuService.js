@@ -58,7 +58,7 @@ const updateMenu = async (id, requestBody) => {
     const menu = await Menu.update(
       {
         name: requestBody.name,
-        price: requestBody.price,
+        kkal: requestBody.kkal,
         description: requestBody.description,
         image: requestBody.image,
       },
@@ -83,7 +83,7 @@ const createMenu = async (requestBody) => {
   try {
     const menu = await Menu.create({
       name: requestBody.name,
-      price: requestBody.price,
+      kkal: requestBody.kkal,
       description: requestBody.description,
       image: requestBody.image,
     });
