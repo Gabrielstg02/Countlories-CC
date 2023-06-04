@@ -1,4 +1,5 @@
-const Menu = require("../models/Menu");
+const db = require("../models");
+const Menu = db["Menu"];
 const ResponseClass = require("../utils/response.js");
 
 const getAllMenu = async () => {

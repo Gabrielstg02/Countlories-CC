@@ -1,4 +1,5 @@
-const Blog = require("../models/blog.js");
+const db = require("../models");
+const Blog = db["Blog"];
 const ResponseClass = require("../utils/response.js");
 
 const getAllBlogs = async () => {

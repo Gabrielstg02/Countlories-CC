@@ -1,7 +1,8 @@
+const db = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const ResponseClass = require("../utils/response.js");
-const { User } = require("../models/user");
+const User = db["User"];
 const { validatePassword } = require("../utils/password.js");
 const { v4: uuidv4 } = require("uuid");
 

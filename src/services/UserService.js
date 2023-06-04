@@ -1,6 +1,7 @@
-const { User } = require("../models/user");
-const { History } = require("../models/history");
-const { Favorite } = require("../models/favorite");
+const db = require("../models");
+const User = db["User"];
+const History = db["History"];
+const Favorite = db["Favorite"];
 const ResponseClass = require("../utils/response.js");
 
 const getAllUsers = async () => {
