@@ -9,6 +9,8 @@ const {
 } = require("../controllers");
 const { verifyToken } = require("../middlewares/verifiyToken.js");
 
+router.use(multer.none());
+
 router.get("/", (req, res) => {
   res.json({ Message: "ok" });
 });
@@ -22,17 +24,29 @@ router.post("/logout", AuthController.logout);
 router.get("/users", UserController.getAllUsers);
 router.get("/users/:id", UserController.getUserById);
 router.get("/users/:id/history", UserController.getUserHistory);
+router.delete("/users/:id/history", UserController.deleteUserHistory);
 router.get("/users/:id/favorite", UserController.getUserFavorite);
+router.delete("/users/:id/favorite", UserController.deleteUserFavorite);
 router.delete("/users/:id", verifyToken, UserController.deleteUser);
 router.put("/users/:id", verifyToken, UserController.updateUser);
 
 /** Router Current User */
 router.get("/user", verifyToken, UserController.getCurrentUser);
 router.get("/user/history", verifyToken, UserController.getCurrentUserHistory);
+router.post(
+  "/user/history",
+  verifyToken,
+  UserController.createCurrentUserHistory
+);
 router.get(
   "/user/favorite",
   verifyToken,
   UserController.getCurrentUserFavorite
+);
+router.post(
+  "/user/favorite",
+  verifyToken,
+  UserController.createCurrentUserFavorite
 );
 
 /** Router Menu */
@@ -74,9 +88,7 @@ router.delete("/blogs/:id", verifyToken, BlogController.deleteBlog);
 router.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   console.error(err.message, err.stack);
-  res.status(statusCode).json({ message: err.message });
-
-  return;
+  return res.status(statusCode).json({ message: err.message });
 });
 
 module.exports = router;
