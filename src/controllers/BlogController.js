@@ -4,7 +4,8 @@ const RequestValidator = require("../utils/request");
 
 const getAllBlogs = async (req, res) => {
   try {
-    res.json(await BlogService.getAllBlogs());
+    const blogs = await BlogService.getAllBlogs();
+    res.status(blogs.code).json(blogs);
   } catch (error) {
     console.log(error);
   }
@@ -12,7 +13,8 @@ const getAllBlogs = async (req, res) => {
 
 const getBlogById = async (req, res) => {
   try {
-    res.json(await BlogService.getBlogById(req.params.id));
+    const blog = await BlogService.getBlogById(req.params.id);
+    res.status(blog.code).json(blog);
   } catch (error) {
     console.log(error);
   }
@@ -23,10 +25,11 @@ const deleteBlog = async (req, res) => {
     const blog = await BlogService.getBlogById(req.params.id);
     const filename = ImageService.getFilename(blog.data.image);
     const deleteImage = ImageService.deleteFromGcs(filename);
-    if (deleteImage.status !== 200) {
-      return res.json(deleteImage);
+    if (deleteImage.code !== 200) {
+      return res.status(deleteImage.code).json(deleteImage);
     }
-    res.json(await BlogService.deleteBlog(req.params.id));
+    const deleteBlog = await BlogService.deleteBlog(req.params.id);
+    res.status(deleteBlog.code).json(deleteBlog);
   } catch (error) {
     console.log(error);
   }
@@ -38,16 +41,17 @@ const updateBlog = async (req, res) => {
       const blog = await BlogService.getBlogById(req.params.id);
       const filename = ImageService.getFilename(blog.data.image);
       const deleteImage = ImageService.deleteFromGcs(filename);
-      if (deleteImage.status !== 200) {
-        return res.json(deleteImage);
+      if (deleteImage.code !== 200) {
+        return res.status(deleteImage.code).json(deleteImage);
       }
       const uploadImage = ImageService.uploadToGcs(req, "Blog");
-      if (uploadImage.status !== 200) {
-        return res.json(uploadImage);
+      if (uploadImage.code !== 200) {
+        return res.status(uploadImage.code).json(uploadImage);
       }
       req.body.image = uploadImage.data;
     }
-    res.json(await BlogService.updateBlog(req.params.id, req.body));
+    const updateBlog = await BlogService.updateBlog(req.params.id, req.body);
+    res.status(updateBlog.code).json(updateBlog);
   } catch (error) {
     console.log(error);
   }
@@ -55,21 +59,22 @@ const updateBlog = async (req, res) => {
 
 const createBlog = async (req, res) => {
   try {
-    const validate = RequestValidator.createBlog(req.body, [
+    const validate = RequestValidator.verifyRequest(req.body, [
       "image",
       "title",
       "content",
     ]);
     if (validate !== true) {
-      return res.json(validate);
+      return res.status(400).json(validate);
     }
     const uploadImage = ImageService.uploadToGcs(req, "Blog");
-    if (uploadImage.status !== 200) {
-      return res.json(uploadImage);
+    if (uploadImage.code !== 200) {
+      return res.status(uploadImage.code).json(uploadImage);
     }
     const requestBody = req.body;
     requestBody.image = uploadImage.data;
-    res.json(await BlogService.createBlog(requestBody));
+    const createBlog = await BlogService.createBlog(requestBody);
+    res.status(createBlog.code).json(createBlog);
   } catch (error) {
     console.log(error);
   }

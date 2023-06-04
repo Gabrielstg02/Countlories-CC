@@ -4,7 +4,8 @@ const RequestValidator = require("../utils/request.js");
 
 const getUserById = async (req, res) => {
   try {
-    res.json(await UserService.getUserById(req.params.id));
+    const user = await UserService.getUserById(req.params.id);
+    res.status(user.code).json(user);
   } catch (error) {
     console.log(error);
   }
@@ -12,7 +13,8 @@ const getUserById = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    res.json(await UserService.getAllUsers());
+    const users = await UserService.getAllUsers();
+    res.status(users.code).json(users);
   } catch (error) {
     console.log(error);
   }
@@ -20,7 +22,8 @@ const getAllUsers = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    res.json(await UserService.deleteUser(req.params.id));
+    const user = await UserService.deleteUser(req.params.id);
+    res.status(user.code).json(user);
   } catch (error) {
     console.log(error);
   }
@@ -28,7 +31,8 @@ const deleteUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    res.json(await UserService.updateUser(req.params.id, req.body));
+    const user = await UserService.updateUser(req.params.id, req.body);
+    res.status(user.code).json(user);
   } catch (error) {
     console.log(error);
   }
@@ -36,7 +40,8 @@ const updateUser = async (req, res) => {
 
 const getUserHistory = async (req, res) => {
   try {
-    res.json(await UserService.getUserHistory(req.params.id));
+    const history = await UserService.getUserHistory(req.params.id);
+    res.status(history.code).json(history);
   } catch (error) {
     console.log(error);
   }
@@ -44,7 +49,8 @@ const getUserHistory = async (req, res) => {
 
 const deleteUserHistory = async (req, res) => {
   try {
-    res.json(await UserService.deleteUserHistory(req.params.id));
+    const history = await UserService.deleteUserHistory(req.params.id);
+    res.status(history.code).json(history);
   } catch (error) {
     console.log(error);
   }
@@ -52,7 +58,8 @@ const deleteUserHistory = async (req, res) => {
 
 const getUserFavorite = async (req, res) => {
   try {
-    res.json(await UserService.getUserFavorite(req.params.id));
+    const favorite = await UserService.getUserFavorite(req.params.id);
+    res.status(favorite.code).json(favorite);
   } catch (error) {
     console.log(error);
   }
@@ -60,7 +67,8 @@ const getUserFavorite = async (req, res) => {
 
 const deleteUserFavorite = async (req, res) => {
   try {
-    res.json(await UserService.deleteUserFavorite(req.params.id));
+    const favorite = await UserService.deleteUserFavorite(req.params.id);
+    res.status(favorite.code).json(favorite);
   } catch (error) {
     console.log(error);
   }
@@ -68,7 +76,8 @@ const deleteUserFavorite = async (req, res) => {
 
 const getCurrentUser = async (req, res) => {
   try {
-    res.json(await UserService.getUserById(req.userId));
+    const user = await UserService.getUserById(req.userId);
+    res.status(user.code).json(user);
   } catch (error) {
     console.log(error);
   }
@@ -76,7 +85,8 @@ const getCurrentUser = async (req, res) => {
 
 const getCurrentUserHistory = async (req, res) => {
   try {
-    res.json(await UserService.getUserHistory(req.userId));
+    const history = await UserService.getUserHistory(req.userId);
+    res.status(history.code).json(history);
   } catch (error) {
     console.log(error);
   }
@@ -85,19 +95,20 @@ const getCurrentUserHistory = async (req, res) => {
 const createCurrentUserHistory = async (req, res) => {
   try {
     const validate = RequestValidator.verifyRequest(req.body, ["menuId"]);
-    if (validate.status !== 200) {
+    if (validate.code !== 200) {
       return res.json(validate);
     }
     if (!req.file) {
-      return res.json(new ResponseClass(400, "Image is required"));
+      return res.status(400).json(new ResponseClass(400, "Image is required"));
     }
     const uploadImage = ImageService.uploadToGcs(req, "UserHistory");
-    if (uploadImage.status !== 200) {
-      return res.json(uploadImage);
+    if (uploadImage.code !== 200) {
+      return res.status(uploadImage.code).json(uploadImage);
     }
     req.body.image = uploadImage.data;
     req.body.userId = req.userId;
-    res.json(await UserService.createUserHistory(req.body));
+    const userHistory = await UserService.createUserHistory(req.body);
+    res.status(userHistory.code).json(userHistory);
   } catch (error) {
     console.log(error);
   }
@@ -105,7 +116,8 @@ const createCurrentUserHistory = async (req, res) => {
 
 const getCurrentUserFavorite = async (req, res) => {
   try {
-    res.json(await UserService.getUserFavorite(req.userId));
+    const favorite = await UserService.getUserFavorite(req.userId);
+    res.status(favorite.code).json(favorite);
   } catch (error) {
     console.log(error);
   }
@@ -114,11 +126,12 @@ const getCurrentUserFavorite = async (req, res) => {
 const createCurrentUserFavorite = async (req, res) => {
   try {
     const validate = RequestValidator.verifyRequest(req.body, ["menuId"]);
-    if (validate.status !== 200) {
-      return res.json(validate);
+    if (validate.code !== 200) {
+      return res.status(validate.code).json(validate);
     }
     req.body.userId = req.userId;
-    res.json(await UserService.createUserFavorite(req.body));
+    const userFavorite = await UserService.createUserFavorite(req.body);
+    res.status(userFavorite.code).json(userFavorite);
   } catch (error) {
     console.log(error);
   }

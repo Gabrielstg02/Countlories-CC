@@ -4,7 +4,8 @@ const ResponseClass = require("../utils/response.js");
 //register function
 const register = async (req, res) => {
   try {
-    res.json(await AuthService.registerUser(req.body));
+    const User = await AuthService.registerUser(req.body);
+    res.status(User.code).json(User);
   } catch (error) {
     console.log(error);
   }
@@ -16,7 +17,7 @@ const login = async (req, res) => {
     var loginResult = await AuthService.loginUser(req.body);
 
     //if login result is success
-    if (loginResult.code == 200) {
+    if (loginResult.status) {
       var responseSuccess = new ResponseClass.SuccessResponse();
 
       //return response cookie with refresh_token
@@ -34,10 +35,10 @@ const login = async (req, res) => {
         authentication_token: loginResult.accessToken,
       };
 
-      res.json(responseSuccess);
+      res.status(responseSuccess.code).json(responseSuccess);
     } else {
       //return error response
-      res.json(loginResult);
+      res.status(loginResult.code).json(loginResult);
     }
   } catch (error) {
     console.log(error);
@@ -52,7 +53,7 @@ const logout = async (req, res, next) => {
       res.clearCookie("refreshToken");
     }
 
-    res.json(logoutResult);
+    res.status(logoutResult.code).json(logoutResult);
   } catch (error) {
     console.log(error);
     next(error);
