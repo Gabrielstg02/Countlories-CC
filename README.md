@@ -33,7 +33,7 @@ This repository is used as working repository for cloud computing side of the Co
     - Copy the `serviceaccountkey.example.json` file and rename it to `serviceaccountkey.json`
     - Copy the content of your service account key to `serviceaccountkey.json` with the access of Google Storage Object Admin for your bucket
 
-* To Be Continued
+* `npm start`
 
 ## Contact
 |            Member           				| Student ID |                                                       Contacts                                                      |
