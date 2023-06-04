@@ -14,7 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   History.init(
-    {},
+    {
+      image: DataTypes.STRING,
+      date: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
+    },
     {
       sequelize,
       modelName: "History",
