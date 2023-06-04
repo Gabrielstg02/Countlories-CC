@@ -95,7 +95,7 @@ const getCurrentUserHistory = async (req, res) => {
 const createCurrentUserHistory = async (req, res) => {
   try {
     const validate = RequestValidator.verifyRequest(req.body, ["menuId"]);
-    if (validate.code !== 200) {
+    if (validate !== true) {
       return res.json(validate);
     }
     if (!req.files) {
@@ -129,7 +129,7 @@ const getCurrentUserFavorite = async (req, res) => {
 const createCurrentUserFavorite = async (req, res) => {
   try {
     const validate = RequestValidator.verifyRequest(req.body, ["menuId"]);
-    if (validate.code !== 200) {
+    if (validate !== true) {
       return res.status(validate.code).json(validate);
     }
     req.body.userId = req.userId;

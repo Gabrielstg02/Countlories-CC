@@ -82,7 +82,7 @@ const getUserHistory = async (id) => {
   try {
     const history = await History.findAll({
       where: {
-        userId: id,
+        UserId: id,
       },
     });
     responseSuccess.message = "Get User History Success";
@@ -100,8 +100,8 @@ const createUserHistory = async (requestBody) => {
   var responseSuccess = new ResponseClass.SuccessResponse();
   try {
     const history = await History.create({
-      userId: requestBody.userId,
-      menuId: requestBody.menuId,
+      UserId: requestBody.userId,
+      MenuId: requestBody.menuId,
       image: requestBody.image,
     });
     responseSuccess.message = "Create User History Success";
@@ -144,7 +144,7 @@ const getUserFavorite = async (id) => {
   try {
     const favorite = await Favorite.findAll({
       where: {
-        userId: id,
+        UserId: id,
       },
     });
     responseSuccess.message = "Get User Favorite Success";
@@ -161,9 +161,10 @@ const createUserFavorite = async (requestBody) => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessResponse();
   try {
+    console.log(requestBody);
     const favorite = await Favorite.create({
-      userId: requestBody.userId,
-      menuId: requestBody.menuId,
+      UserId: requestBody.userId,
+      MenuId: requestBody.menuId,
     });
     responseSuccess.message = "Create User Favorite Success";
     responseSuccess.data = favorite;
