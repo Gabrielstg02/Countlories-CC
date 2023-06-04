@@ -9,6 +9,7 @@ const verifyRequest = (request, requiredField) => {
   if (missingField.length > 0) {
     validate.code = 400;
     validate.message = `${missingField.join(", ")} is missing`;
+    return validate;
   }
   return true;
 };
