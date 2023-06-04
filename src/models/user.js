@@ -26,6 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: "User",
       paranoid: true,
+      defaultScope: {
+        attributes: { exclude: ["password", "refresh_token"] },
+      },
     }
   );
   return User;
