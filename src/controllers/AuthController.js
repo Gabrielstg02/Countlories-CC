@@ -46,7 +46,7 @@ const login = async (req, res) => {
 
 const logout = async (req, res, next) => {
   try {
-    var logoutResult = await AuthService.logoutUser(req.headers.cookie);
+    var logoutResult = await AuthService.logoutUser(req.cookies.refreshToken);
 
     if (logoutResult.code == 200) {
       res.clearCookie("refreshToken");

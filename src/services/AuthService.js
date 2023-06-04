@@ -140,7 +140,7 @@ const logoutUser = async (refreshToken) => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessWithNoDataResponse();
 
-  if (!request) {
+  if (!refreshToken) {
     responseSuccess.code = 204;
     responseSuccess.message = "The Request did not return any content";
     return responseSuccess;
