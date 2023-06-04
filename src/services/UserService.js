@@ -123,6 +123,11 @@ const deleteUserHistory = async (id) => {
         id: id,
       },
     });
+    if (history == 0) {
+      responseError.code = 404;
+      responseError.message = "History Not Found";
+      return responseError;
+    }
     responseSuccess.message = "Delete User History Success";
     responseSuccess.data = history;
     return responseSuccess;
@@ -179,6 +184,11 @@ const deleteUserFavorite = async (id) => {
         id: id,
       },
     });
+    if (favorite == 0) {
+      responseError.code = 404;
+      responseError.message = "Favorite Not Found";
+      return responseError;
+    }
     responseSuccess.message = "Delete User Favorite Success";
     responseSuccess.data = favorite;
     return responseSuccess;
