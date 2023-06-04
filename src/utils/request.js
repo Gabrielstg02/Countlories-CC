@@ -12,3 +12,7 @@ const verifyRequest = (request, requiredField) => {
   }
   return true;
 };
+
+module.exports = {
+  verifyRequest,
+};
