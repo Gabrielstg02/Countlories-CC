@@ -90,6 +90,44 @@ const getUserHistory = async (id) => {
   }
 };
 
+const createUserHistory = async (requestBody) => {
+  var responseError = new ResponseClass.ErrorResponse();
+  var responseSuccess = new ResponseClass.SuccessResponse();
+  try {
+    const history = await History.create({
+      userId: requestBody.userId,
+      menuId: requestBody.menuId,
+      image: requestBody.image,
+    });
+    responseSuccess.message = "Create User History Success";
+    responseSuccess.data = history;
+    return responseSuccess;
+  } catch (error) {
+    responseError.status = 500;
+    responseError.message = error.message;
+    return responseError;
+  }
+};
+
+const deleteUserHistory = async (id) => {
+  var responseError = new ResponseClass.ErrorResponse();
+  var responseSuccess = new ResponseClass.SuccessResponse();
+  try {
+    const history = await History.destroy({
+      where: {
+        id: id,
+      },
+    });
+    responseSuccess.message = "Delete User History Success";
+    responseSuccess.data = history;
+    return responseSuccess;
+  } catch (error) {
+    responseError.status = 500;
+    responseError.message = error.message;
+    return responseError;
+  }
+};
+
 const getUserFavorite = async (id) => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessResponse();
@@ -108,11 +146,52 @@ const getUserFavorite = async (id) => {
   }
 };
 
+const createUserFavorite = async (requestBody) => {
+  var responseError = new ResponseClass.ErrorResponse();
+  var responseSuccess = new ResponseClass.SuccessResponse();
+  try {
+    const favorite = await Favorite.create({
+      userId: requestBody.userId,
+      menuId: requestBody.menuId,
+    });
+    responseSuccess.message = "Create User Favorite Success";
+    responseSuccess.data = favorite;
+    return responseSuccess;
+  } catch (error) {
+    responseError.status = 500;
+    responseError.message = error.message;
+    return responseError;
+  }
+};
+
+const deleteUserFavorite = async (id) => {
+  var responseError = new ResponseClass.ErrorResponse();
+  var responseSuccess = new ResponseClass.SuccessResponse();
+  try {
+    const favorite = await Favorite.destroy({
+      where: {
+        id: id,
+      },
+    });
+    responseSuccess.message = "Delete User Favorite Success";
+    responseSuccess.data = favorite;
+    return responseSuccess;
+  } catch (error) {
+    responseError.status = 500;
+    responseError.message = error.message;
+    return responseError;
+  }
+};
+
 module.exports = {
   getUserById,
   getAllUsers,
   deleteUser,
   updateUser,
   getUserHistory,
+  createUserHistory,
+  deleteUserHistory,
   getUserFavorite,
+  createUserFavorite,
+  deleteUserFavorite,
 };
