@@ -98,10 +98,13 @@ const createCurrentUserHistory = async (req, res) => {
     if (validate.code !== 200) {
       return res.json(validate);
     }
-    if (!req.file) {
+    if (!req.files) {
       return res.status(400).json(new ResponseClass(400, "Image is required"));
     }
-    const uploadImage = ImageService.uploadToGcs(req, "UserHistory");
+    const uploadImage = await ImageService.uploadToGcs(
+      req.files[0],
+      "UserHistory"
+    );
     if (uploadImage.code !== 200) {
       return res.status(uploadImage.code).json(uploadImage);
     }

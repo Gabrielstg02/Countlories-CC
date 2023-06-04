@@ -37,14 +37,14 @@ const deleteMenu = async (req, res) => {
 
 const updateMenu = async (req, res) => {
   try {
-    if (req.file) {
+    if (req.files) {
       const menu = await MenuService.getMenuById(req.params.id);
       const filename = ImageService.getFilename(menu.data.image);
       const deleteImage = ImageService.deleteFromGcs(filename);
       if (deleteImage.code !== 200) {
         return res.status(deleteImage.code).json(deleteImage);
       }
-      const uploadImage = ImageService.uploadToGcs(req, "Menu");
+      const uploadImage = await ImageService.uploadToGcs(req.files[0], "Menu");
       if (uploadImage.code !== 200) {
         return res.status(uploadImage.code).json(uploadImage);
       }
@@ -59,6 +59,12 @@ const updateMenu = async (req, res) => {
 
 const createMenu = async (req, res) => {
   try {
+    if (!req.files) {
+      return res.json({
+        status: 400,
+        message: "Image is required",
+      });
+    }
     const validate = RequestValidator.verifyRequest(req.body, [
       "name",
       "kkal",
@@ -67,13 +73,8 @@ const createMenu = async (req, res) => {
     if (validate !== true) {
       return res.status(400).json(validate);
     }
-    if (!req.file) {
-      return res.json({
-        status: 400,
-        message: "Image is required",
-      });
-    }
-    const uploadImage = ImageService.uploadToGcs(req, "Menu");
+
+    const uploadImage = await ImageService.uploadToGcs(req.files[0], "Menu");
     if (uploadImage.code !== 200) {
       return res.status(uploadImage.code).json(uploadImage);
     }

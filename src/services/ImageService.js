@@ -18,40 +18,30 @@ const getPublicUrl = (filename) => {
   return "https://storage.googleapis.com/" + bucketName + "/" + filename;
 };
 
-const uploadToGcs = (req, folder) => {
+const uploadToGcs = async (file, folder) => {
   const SuccessResponse = new ResponseClass.SuccessResponse();
   const ErrorResponse = new ResponseClass.ErrorResponse();
 
-  if (!req.file) {
+  if (!file) {
     ErrorResponse.message = "No file uploaded";
     return ErrorResponse;
   }
+  try {
+    const gcsname = `${folder}/${dateFormat(new Date(), "yyyymmdd-HHMMss")}`;
+    const filecontent = file.buffer;
+    const contentType = file.mimetype;
+    await bucket.file(gcsname).save(filecontent, {
+      contentType,
+    });
 
-  const gcsname = `${folder}/${dateFormat(new Date(), "yyyymmdd-HHMMss")}`;
-  const file = bucket.file(gcsname);
-
-  const stream = file.createWriteStream({
-    metadata: {
-      contentType: req.file.mimetype,
-    },
-  });
-
-  stream.on("error", (err) => {
-    req.file.cloudStorageError = err;
+    SuccessResponse.message = "Upload Success";
+    SuccessResponse.data = getPublicUrl(gcsname);
+    return SuccessResponse;
+  } catch (err) {
     ErrorResponse.code = 500;
     ErrorResponse.message = err.message;
     return ErrorResponse;
-  });
-
-  stream.on("finish", () => {
-    req.file.cloudStorageObject = gcsname;
-    req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
-    SuccessResponse.data = req.file.cloudStoragePublicUrl;
-    SuccessResponse.message = "Upload Success";
-    return SuccessResponse;
-  });
-
-  stream.end(req.file.buffer);
+  }
 };
 
 const deleteFromGcs = (filename) => {

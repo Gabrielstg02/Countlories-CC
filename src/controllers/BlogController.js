@@ -37,14 +37,14 @@ const deleteBlog = async (req, res) => {
 
 const updateBlog = async (req, res) => {
   try {
-    if (req.file) {
+    if (req.files) {
       const blog = await BlogService.getBlogById(req.params.id);
       const filename = ImageService.getFilename(blog.data.image);
       const deleteImage = ImageService.deleteFromGcs(filename);
       if (deleteImage.code !== 200) {
         return res.status(deleteImage.code).json(deleteImage);
       }
-      const uploadImage = ImageService.uploadToGcs(req, "Blog");
+      const uploadImage = await ImageService.uploadToGcs(req.files[0], "Blog");
       if (uploadImage.code !== 200) {
         return res.status(uploadImage.code).json(uploadImage);
       }
@@ -67,7 +67,7 @@ const createBlog = async (req, res) => {
     if (validate !== true) {
       return res.status(400).json(validate);
     }
-    const uploadImage = ImageService.uploadToGcs(req, "Blog");
+    const uploadImage = await ImageService.uploadToGcs(req.files[0], "Blog");
     if (uploadImage.code !== 200) {
       return res.status(uploadImage.code).json(uploadImage);
     }
