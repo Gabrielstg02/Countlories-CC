@@ -84,6 +84,12 @@ const getUserHistory = async (id) => {
       where: {
         UserId: id,
       },
+      include: [
+        {
+          model: db["Menu"],
+          as: "menu",
+        },
+      ],
     });
     responseSuccess.message = "Get User History Success";
     responseSuccess.data = history;
@@ -146,6 +152,12 @@ const getUserFavorite = async (id) => {
       where: {
         UserId: id,
       },
+      include: [
+        {
+          model: db["Menu"],
+          as: "menu",
+        },
+      ],
     });
     responseSuccess.message = "Get User Favorite Success";
     responseSuccess.data = favorite;
