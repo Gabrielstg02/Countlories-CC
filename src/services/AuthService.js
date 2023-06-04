@@ -4,87 +4,88 @@ const jwt = require("jsonwebtoken");
 const ResponseClass = require("../utils/response.js");
 const User = db["User"];
 const { validatePassword } = require("../utils/password.js");
-const { v4: uuidv4 } = require("uuid");
 
 const registerUser = async (requestBody) => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessResponse();
-
   //check if password or email is empty
-  if (!requestBody.email || !requestBody.password) {
+  if (!requestBody?.email || !requestBody?.password) {
     responseError.message = "Email or Password missing";
     return responseError;
-  } else {
-    //regex for email format
-    const emailRegexp =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    if (emailRegexp.test(requestBody.email) == false) {
-      responseError.message = "Email is invalid";
-      return responseError;
-    }
+  }
+  //regex for email format
+  const emailRegexp =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  if (emailRegexp.test(requestBody.email) == false) {
+    responseError.message = "Email is invalid";
+    return responseError;
+  }
 
-    //SELECT ... where email = requestbody.email LIMIT 1
-    const emailRegistered = await User.findOne({
-      where: { email: requestBody.email },
+  //SELECT ... where email = requestbody.email LIMIT 1
+  const emailRegistered = await User.findOne({
+    where: { email: requestBody.email },
+  });
+
+  if (emailRegistered) {
+    responseError.message = "Email has been registered";
+    return responseError;
+  }
+  //validate method from users model
+  const passValidation = validatePassword(requestBody.password, false);
+  if (!passValidation) {
+    responseError.message = validatePassword(requestBody.password, true);
+    return responseError;
+  }
+  // if (requestBody.password !== requestBody.confirmPassword) {
+  //   responseError.message = "Password and Confirm Password not match";
+  //   return responseError;
+  // }
+
+  const salt = await bcrypt.genSalt();
+  const hashPass = await bcrypt.hash(requestBody.password, salt);
+  try {
+    //add User
+    await User.create({
+      name: requestBody.name,
+      email: requestBody.email,
+      password: hashPass,
     });
 
-    if (emailRegistered) {
-      responseError.message = "Email has been registered";
-      return responseError;
-    }
-    //validate method from users model
-    const passValidation = validatePassword(requestBody.password, false);
-    if (!passValidation) {
-      responseError.message = validatePassword(requestBody.password, true);
-      return responseError;
-    }
-    if (requestBody.password !== requestBody.confirmPassword) {
-      responseError.message = "Password and Confirm Password not match";
-      return responseError;
-    }
+    //return response success
+    responseSuccess.message = "Register Success";
+    responseSuccess.data = {
+      name: requestBody.name,
+      email: requestBody.email,
+      password: requestBody.password,
+    };
+    responseSuccess.code = 201;
+    return responseSuccess;
+  } catch (error) {
+    console.log(error);
 
-    const salt = await bcrypt.genSalt();
-    const hashPass = await bcrypt.hash(requestBody.password, salt);
-    try {
-      //add User
-      await User.create({
-        id: uuidv4(),
-        name: requestBody.name,
-        email: requestBody.email,
-        password: hashPass,
-      });
+    //return server error response
+    responseError.code = 500;
+    responseError.message = error;
 
-      //return response success
-      responseSuccess.message = "Register Success";
-      responseSuccess.data = {
-        name: requestBody.name,
-        email: requestBody.email,
-        password: requestBody.password,
-      };
-      return responseSuccess;
-    } catch (error) {
-      console.log(error);
-
-      //return server error response
-      responseError.code = 500;
-      responseError.message = error;
-
-      return responseError;
-    }
+    return responseError;
   }
 };
 
 const loginUser = async (requestBody) => {
   var responseError = new ResponseClass.ErrorResponse();
+  var responseSuccess = new ResponseClass.SuccessResponse();
 
   //check if email and password is empty
-  if (!requestbody.email || !requestBody.password) {
+  if (!requestBody?.email || !requestBody?.password) {
     responseError.message = "Email or Password missing";
     return responseError;
   } else {
     //find email from request body in database
     const userRegistered = await User.findOne({
       where: { email: requestBody.email },
+      attributes: {
+        include: ["password"],
+      },
     });
 
     if (userRegistered == null) {
@@ -92,18 +93,18 @@ const loginUser = async (requestBody) => {
       return responseError;
     } else {
       //compare request body password with password in database
-      const matchPassword = await bcrypt.compare(
-        requestBody.password,
-        userRegistered.password
-      );
-      //if pass not match
-      if (!matchPassword) {
-        responseError.message = "Wrong Password!";
-        return responseError;
-      } else {
-        const resultToken = generateToken(userRegistered);
+      try {
+        const matchPassword = await bcrypt.compare(
+          requestBody.password,
+          userRegistered.password
+        );
+        //if pass not match
+        if (!matchPassword) {
+          responseError.message = "Wrong Password!";
+          return responseError;
+        } else {
+          const resultToken = generateToken(userRegistered);
 
-        try {
           //update refresh token to database
           await User.update(
             { refresh_token: resultToken.refreshToken },
@@ -116,21 +117,19 @@ const loginUser = async (requestBody) => {
 
           //return login result response
           const loginResult = {
-            code: 200,
+            status: true,
             userId: userRegistered.id,
             refresh_token: resultToken.refreshToken,
             accessToken: resultToken.accessToken,
           };
 
           return loginResult;
-        } catch (error) {
-          console.log(error);
-
-          responseError.code = 500;
-          responseError.message = error;
-
-          return responseError;
         }
+      } catch (error) {
+        responseError.code = 500;
+        responseError.message = error.message;
+
+        return responseError;
       }
     }
   }
