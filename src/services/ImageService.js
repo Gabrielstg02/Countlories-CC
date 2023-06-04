@@ -27,7 +27,10 @@ const uploadToGcs = async (file, folder) => {
     return ErrorResponse;
   }
   try {
-    const gcsname = `${folder}/${dateFormat(new Date(), "yyyymmdd-HHMMss")}`;
+    const gcsname = `${folder}/${dateFormat(
+      new Date(),
+      "yyyymmdd-HHMMss"
+    )}.${file.originalname.split(".").pop()}`;
     const filecontent = file.buffer;
     const contentType = file.mimetype;
     await bucket.file(gcsname).save(filecontent, {
