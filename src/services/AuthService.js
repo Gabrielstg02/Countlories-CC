@@ -181,7 +181,7 @@ function generateToken(userRegistered) {
     { userId, name, email },
     process.env.ACCESS_TOKEN_SECRET,
     {
-      expiresIn: "120s",
+      expiresIn: "7d",
     }
   );
 
@@ -190,7 +190,7 @@ function generateToken(userRegistered) {
     { userId, name, email },
     process.env.REFRESH_TOKEN_SECRET,
     {
-      expiresIn: "1d",
+      expiresIn: "30d",
     }
   );
 
