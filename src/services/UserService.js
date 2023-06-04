@@ -13,6 +13,7 @@ const getAllUsers = async () => {
     responseSuccess.data = users;
     return responseSuccess;
   } catch (error) {
+    responseError.code = 500;
     responseError.message = error.message;
     return responseError;
   }
@@ -31,6 +32,7 @@ const getUserById = async (id) => {
     responseSuccess.data = user;
     return responseSuccess;
   } catch (error) {
+    responseError.code = 500;
     responseError.message = error.message;
     return responseError;
   }
@@ -49,6 +51,7 @@ const deleteUser = async (id) => {
     responseSuccess.data = user;
     return responseSuccess;
   } catch (error) {
+    responseError.code = 500;
     responseError.message = error.message;
     return responseError;
   }
@@ -67,6 +70,7 @@ const updateUser = async (id, requestBody) => {
     responseSuccess.data = user;
     return responseSuccess;
   } catch (error) {
+    responseError.code = 500;
     responseError.message = error.message;
     return responseError;
   }
@@ -85,6 +89,7 @@ const getUserHistory = async (id) => {
     responseSuccess.data = history;
     return responseSuccess;
   } catch (error) {
+    responseError.code = 500;
     responseError.message = error.message;
     return responseError;
   }
@@ -103,7 +108,7 @@ const createUserHistory = async (requestBody) => {
     responseSuccess.data = history;
     return responseSuccess;
   } catch (error) {
-    responseError.status = 500;
+    responseError.code = 500;
     responseError.message = error.message;
     return responseError;
   }
@@ -122,7 +127,7 @@ const deleteUserHistory = async (id) => {
     responseSuccess.data = history;
     return responseSuccess;
   } catch (error) {
-    responseError.status = 500;
+    responseError.code = 500;
     responseError.message = error.message;
     return responseError;
   }
@@ -141,6 +146,7 @@ const getUserFavorite = async (id) => {
     responseSuccess.data = favorite;
     return responseSuccess;
   } catch (error) {
+    responseError.code = 500;
     responseError.message = error.message;
     return responseError;
   }
@@ -158,7 +164,7 @@ const createUserFavorite = async (requestBody) => {
     responseSuccess.data = favorite;
     return responseSuccess;
   } catch (error) {
-    responseError.status = 500;
+    responseError.code = 500;
     responseError.message = error.message;
     return responseError;
   }
@@ -177,7 +183,7 @@ const deleteUserFavorite = async (id) => {
     responseSuccess.data = favorite;
     return responseSuccess;
   } catch (error) {
-    responseError.status = 500;
+    responseError.code = 500;
     responseError.message = error.message;
     return responseError;
   }
