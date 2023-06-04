@@ -56,19 +56,11 @@ const updateMenu = async (id, requestBody) => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessResponse();
   try {
-    const menu = await Menu.update(
-      {
-        name: requestBody.name,
-        kkal: requestBody.kkal,
-        description: requestBody.description,
-        image: requestBody.image,
+    const menu = await Menu.update(requestBody, {
+      where: {
+        id: id,
       },
-      {
-        where: {
-          id: id,
-        },
-      }
-    );
+    });
     responseSuccess.message = "Update Menu Success";
     responseSuccess.data = menu;
     return responseSuccess;

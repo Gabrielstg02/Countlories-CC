@@ -58,18 +58,11 @@ const updateUser = async (id, requestBody) => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessResponse();
   try {
-    const user = await User.update(
-      {
-        name: requestBody.name,
-        email: requestBody.email,
-        password: requestBody.password,
+    const user = await User.update(requestBody, {
+      where: {
+        id: id,
       },
-      {
-        where: {
-          id: id,
-        },
-      }
-    );
+    });
     responseSuccess.message = "Update User Success";
     responseSuccess.data = user;
     return responseSuccess;

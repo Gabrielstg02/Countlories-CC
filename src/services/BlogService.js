@@ -59,19 +59,11 @@ const updateBlog = async (id, requestBody) => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessResponse();
   try {
-    const blog = await Blog.update(
-      {
-        title: requestBody.title,
-        content: requestBody.content,
-        image: requestBody.image,
-        category: requestBody.category,
+    const blog = await Blog.update(requestBody, {
+      where: {
+        id: id,
       },
-      {
-        where: {
-          id: id,
-        },
-      }
-    );
+    });
     responseSuccess.message = "Update Blog Success";
     responseSuccess.data = blog;
     return responseSuccess;
