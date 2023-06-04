@@ -9,7 +9,7 @@ const {
 } = require("../controllers");
 const { verifyToken } = require("../middlewares/verifiyToken.js");
 
-router.use(multer.none());
+router.use(multer.any());
 
 router.get("/", (req, res) => {
   res.json({ Message: "ok" });
@@ -24,9 +24,9 @@ router.post("/logout", AuthController.logout);
 router.get("/users", UserController.getAllUsers);
 router.get("/users/:id", UserController.getUserById);
 router.get("/users/:id/history", UserController.getUserHistory);
-router.delete("/users/:id/history", UserController.deleteUserHistory);
+router.delete("/users/history/:id", UserController.deleteUserHistory);
 router.get("/users/:id/favorite", UserController.getUserFavorite);
-router.delete("/users/:id/favorite", UserController.deleteUserFavorite);
+router.delete("/users/favorite/:id", UserController.deleteUserFavorite);
 router.delete("/users/:id", verifyToken, UserController.deleteUser);
 router.put("/users/:id", verifyToken, UserController.updateUser);
 
@@ -52,35 +52,15 @@ router.post(
 /** Router Menu */
 router.get("/menus", MenuController.getAllMenu);
 router.get("/menus/:id", MenuController.getMenuById);
-router.post(
-  "/menus",
-  verifyToken,
-  multer.single("image"),
-  MenuController.createMenu
-);
-router.put(
-  "/menus/:id",
-  verifyToken,
-  multer.single("image"),
-  MenuController.updateMenu
-);
+router.post("/menus", verifyToken, MenuController.createMenu);
+router.put("/menus/:id", verifyToken, MenuController.updateMenu);
 router.delete("/menus/:id", verifyToken, MenuController.deleteMenu);
 
 /** Router Blog */
 router.get("/blogs", BlogController.getAllBlogs);
 router.get("/blogs/:id", BlogController.getBlogById);
-router.post(
-  "/blogs",
-  verifyToken,
-  multer.single("image"),
-  BlogController.createBlog
-);
-router.put(
-  "/blogs/:id",
-  verifyToken,
-  multer.single("image"),
-  BlogController.updateBlog
-);
+router.post("/blogs", verifyToken, BlogController.createBlog);
+router.put("/blogs/:id", verifyToken, BlogController.updateBlog);
 router.delete("/blogs/:id", verifyToken, BlogController.deleteBlog);
 
 /* Error handler middleware */
