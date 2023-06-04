@@ -38,7 +38,7 @@ const uploadToGcs = (req, folder) => {
 
   stream.on("error", (err) => {
     req.file.cloudStorageError = err;
-    ErrorResponse.status = 500;
+    ErrorResponse.code = 500;
     ErrorResponse.message = err.message;
     return ErrorResponse;
   });
@@ -68,7 +68,7 @@ const deleteFromGcs = (filename) => {
     SuccessResponse.message = "Delete Success";
     return SuccessResponse;
   } catch (err) {
-    ErrorResponse.status = 500;
+    ErrorResponse.code = 500;
     ErrorResponse.message = err.message;
     return ErrorResponse;
   }
