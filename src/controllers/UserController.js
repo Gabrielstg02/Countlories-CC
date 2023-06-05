@@ -1,4 +1,5 @@
 const UserService = require("../services/UserService.js");
+const ImageService = require("../services/ImageService.js");
 const ResponseClass = require("../utils/response.js");
 const RequestValidator = require("../utils/request.js");
 

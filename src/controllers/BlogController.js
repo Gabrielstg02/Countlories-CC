@@ -22,13 +22,16 @@ const getBlogById = async (req, res) => {
 
 const deleteBlog = async (req, res) => {
   try {
-    const blog = await BlogService.getBlogById(req.params.id);
-    const filename = ImageService.getFilename(blog.data.image);
-    const deleteImage = ImageService.deleteFromGcs(filename);
-    if (deleteImage.code !== 200) {
-      return res.status(deleteImage.code).json(deleteImage);
+    const permanent = req.query.permanent ? req.query.permanent : false;
+    if (permanent) {
+      const blog = await BlogService.getBlogById(req.params.id);
+      const filename = ImageService.getFilename(blog.data.image);
+      const deleteImage = await ImageService.deleteFromGcs(filename);
+      if (deleteImage.code !== 200 && deleteImage.code !== 404) {
+        return res.status(deleteImage.code).json(deleteImage);
+      }
     }
-    const deleteBlog = await BlogService.deleteBlog(req.params.id);
+    const deleteBlog = await BlogService.deleteBlog(req.params.id, permanent);
     res.status(deleteBlog.code).json(deleteBlog);
   } catch (error) {
     console.log(error);
@@ -40,8 +43,8 @@ const updateBlog = async (req, res) => {
     if (req.files) {
       const blog = await BlogService.getBlogById(req.params.id);
       const filename = ImageService.getFilename(blog.data.image);
-      const deleteImage = ImageService.deleteFromGcs(filename);
-      if (deleteImage.code !== 200) {
+      const deleteImage = await ImageService.deleteFromGcs(filename);
+      if (deleteImage.code !== 200 && deleteImage.code !== 404) {
         return res.status(deleteImage.code).json(deleteImage);
       }
       const uploadImage = await ImageService.uploadToGcs(req.files[0], "Blog");
@@ -60,12 +63,14 @@ const updateBlog = async (req, res) => {
 const createBlog = async (req, res) => {
   try {
     const validate = RequestValidator.verifyRequest(req.body, [
-      "image",
       "title",
       "content",
     ]);
     if (validate !== true) {
       return res.status(400).json(validate);
+    }
+    if (!req.files) {
+      return res.status(400).json(new ResponseClass(400, "Image is required"));
     }
     const uploadImage = await ImageService.uploadToGcs(req.files[0], "Blog");
     if (uploadImage.code !== 200) {

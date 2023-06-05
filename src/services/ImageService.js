@@ -47,7 +47,7 @@ const uploadToGcs = async (file, folder) => {
   }
 };
 
-const deleteFromGcs = (filename) => {
+const deleteFromGcs = async (filename) => {
   const SuccessResponse = new ResponseClass.SuccessResponse();
   const ErrorResponse = new ResponseClass.ErrorResponse();
 
@@ -57,13 +57,20 @@ const deleteFromGcs = (filename) => {
   }
 
   try {
-    bucket.file(filename).delete();
+    await bucket.file(filename).delete();
     SuccessResponse.message = "Delete Success";
     return SuccessResponse;
   } catch (err) {
-    ErrorResponse.code = 500;
-    ErrorResponse.message = err.message;
-    return ErrorResponse;
+    if (err.code === 404) {
+      // File not found, ignore the error
+      SuccessResponse.code = 404;
+      SuccessResponse.message = "File not found, no action taken";
+      return SuccessResponse;
+    } else {
+      ErrorResponse.code = 500;
+      ErrorResponse.message = err.message;
+      return ErrorResponse;
+    }
   }
 };
 

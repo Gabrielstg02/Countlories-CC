@@ -9,8 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Favorite);
-      this.hasMany(models.History);
+      this.hasMany(models.Favorite, {
+        foreignKey: { allowNull: true, onDelete: "SET NULL" },
+      });
+      this.hasMany(models.History, {
+        foreignKey: { allowNull: true, onDelete: "SET NULL" },
+      });
     }
   }
   Menu.init(

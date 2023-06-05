@@ -22,13 +22,16 @@ const getMenuById = async (req, res) => {
 
 const deleteMenu = async (req, res) => {
   try {
-    const menu = await MenuService.getMenuById(req.params.id);
-    const filename = ImageService.getFilename(menu.data.image);
-    const deleteImage = ImageService.deleteFromGcs(filename);
-    if (deleteImage.code !== 200) {
-      return res.status(deleteImage.code).json(deleteImage);
+    const permanent = req.query.permanent ? req.query.permanent : false;
+    if (permanent) {
+      const menu = await MenuService.getMenuById(req.params.id);
+      const filename = ImageService.getFilename(menu.data.image);
+      const deleteImage = await ImageService.deleteFromGcs(filename);
+      if (deleteImage.code !== 200 && deleteImage.code !== 404) {
+        return res.status(deleteImage.code).json(deleteImage);
+      }
     }
-    const deleteMenu = await MenuService.deleteMenu(req.params.id);
+    const deleteMenu = await MenuService.deleteMenu(req.params.id, permanent);
     res.status(deleteMenu.code).json(deleteMenu);
   } catch (error) {
     console.log(error);
@@ -38,10 +41,11 @@ const deleteMenu = async (req, res) => {
 const updateMenu = async (req, res) => {
   try {
     if (req.files) {
+      console.log("coek");
       const menu = await MenuService.getMenuById(req.params.id);
       const filename = ImageService.getFilename(menu.data.image);
-      const deleteImage = ImageService.deleteFromGcs(filename);
-      if (deleteImage.code !== 200) {
+      const deleteImage = await ImageService.deleteFromGcs(filename);
+      if (deleteImage.code !== 200 && deleteImage.code !== 404) {
         return res.status(deleteImage.code).json(deleteImage);
       }
       const uploadImage = await ImageService.uploadToGcs(req.files[0], "Menu");

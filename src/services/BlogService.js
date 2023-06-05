@@ -36,7 +36,7 @@ const getBlogById = async (id) => {
   }
 };
 
-const deleteBlog = async (id) => {
+const deleteBlog = async (id, permanent = false) => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessResponse();
   try {
@@ -44,6 +44,7 @@ const deleteBlog = async (id) => {
       where: {
         id: id,
       },
+      force: permanent,
     });
     responseSuccess.message = "Delete Blog Success";
     responseSuccess.data = blog;
