@@ -119,6 +119,7 @@ const loginUser = async (requestBody) => {
           const loginResult = {
             status: true,
             userId: userRegistered.id,
+            name: userRegistered.name,
             refresh_token: resultToken.refreshToken,
             accessToken: resultToken.accessToken,
           };

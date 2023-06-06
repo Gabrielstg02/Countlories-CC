@@ -31,6 +31,7 @@ const login = async (req, res) => {
       responseSuccess.data = {
         object: "authentication_token",
         userId: loginResult.userId,
+        name: loginResult.name,
         email: req.body.email,
         authentication_token: loginResult.accessToken,
       };
