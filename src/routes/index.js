@@ -12,7 +12,10 @@ const {
   MenuController,
   BlogController,
 } = require("../controllers");
-const { verifyToken } = require("../middlewares/verifiyToken.js");
+const {
+  verifyToken,
+  verifyAdminToken,
+} = require("../middlewares/verifiyToken.js");
 
 router.use(multer.any());
 
@@ -24,6 +27,12 @@ router.get("/", (req, res) => {
 router.post("/register", AuthController.register);
 router.post("/login", AuthController.login);
 router.post("/logout", AuthController.logout);
+router.post("/refresh-token", AuthController.refreshToken);
+
+/** Router Auth Admin */
+router.post("/admin/login", AuthController.loginAdmin);
+router.post("/admin/logout", AuthController.logoutAdmin);
+router.post("/admin/refresh-token", AuthController.refreshTokenAdmin);
 
 /** Router User */
 router.get("/users", UserController.getAllUsers);
@@ -57,16 +66,16 @@ router.post(
 /** Router Menu */
 router.get("/menus", MenuController.getAllMenu);
 router.get("/menus/:id", MenuController.getMenuById);
-router.post("/menus", verifyToken, MenuController.createMenu);
-router.put("/menus/:id", verifyToken, MenuController.updateMenu);
-router.delete("/menus/:id", verifyToken, MenuController.deleteMenu);
+router.post("/menus", verifyAdminToken, MenuController.createMenu);
+router.put("/menus/:id", verifyAdminToken, MenuController.updateMenu);
+router.delete("/menus/:id", verifyAdminToken, MenuController.deleteMenu);
 
 /** Router Blog */
 router.get("/blogs", BlogController.getAllBlogs);
 router.get("/blogs/:id", BlogController.getBlogById);
-router.post("/blogs", verifyToken, BlogController.createBlog);
-router.put("/blogs/:id", verifyToken, BlogController.updateBlog);
-router.delete("/blogs/:id", verifyToken, BlogController.deleteBlog);
+router.post("/blogs", verifyAdminToken, BlogController.createBlog);
+router.put("/blogs/:id", verifyAdminToken, BlogController.updateBlog);
+router.delete("/blogs/:id", verifyAdminToken, BlogController.deleteBlog);
 
 /* Error handler middleware */
 // incase we forgot to impelement error handler in our controller/services

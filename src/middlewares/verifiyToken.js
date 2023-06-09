@@ -16,12 +16,23 @@ const verifyToken = (req, res, next) => {
       responseError.code = 403;
       return res.json(responseError);
     }
+    if (req?.role == "admin" && decoded.role != "admin") {
+      responseError.message = "You are not authorized";
+      responseError.code = 401;
+      return res.json(responseError);
+    }
     req.userId = decoded.userId;
     req.email = decoded.email;
     next();
   });
 };
 
+const verifyAdminToken = (req, res, next) => {
+  req.role = "admin";
+  verifyToken(req, res, next);
+};
+
 module.exports = {
   verifyToken,
+  verifyAdminToken,
 };

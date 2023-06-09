@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const ResponseClass = require("../utils/response.js");
 const User = db["User"];
+const Admin = db["Admin"];
 const { validatePassword } = require("../utils/password.js");
 
 const registerUser = async (requestBody) => {
@@ -71,9 +72,10 @@ const registerUser = async (requestBody) => {
   }
 };
 
-const loginUser = async (requestBody) => {
+const loginUser = async (requestBody, table = "user") => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessResponse();
+  const userTable = table == "user" ? User : Admin;
 
   //check if email and password is empty
   if (!requestBody?.email || !requestBody?.password) {
@@ -81,7 +83,7 @@ const loginUser = async (requestBody) => {
     return responseError;
   } else {
     //find email from request body in database
-    const userRegistered = await User.findOne({
+    const userRegistered = await userTable.findOne({
       where: { email: requestBody.email },
       attributes: {
         include: ["password"],
@@ -106,7 +108,7 @@ const loginUser = async (requestBody) => {
           const resultToken = generateToken(userRegistered);
 
           //update refresh token to database
-          await User.update(
+          await userTable.update(
             { refresh_token: resultToken.refreshToken },
             {
               where: {
@@ -136,9 +138,10 @@ const loginUser = async (requestBody) => {
   }
 };
 
-const logoutUser = async (refreshToken) => {
+const logoutUser = async (refreshToken, table = "user") => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessWithNoDataResponse();
+  const userTable = table == "user" ? User : Admin;
 
   if (!refreshToken) {
     responseSuccess.code = 204;
@@ -147,12 +150,12 @@ const logoutUser = async (refreshToken) => {
   }
 
   try {
-    const loginUser = await User.findOne({
+    const loginUser = await userTable.findOne({
       where: { refresh_token: refreshToken },
     });
 
     if (loginUser !== null) {
-      await User.update(
+      await userTable.update(
         { refresh_token: null },
         { where: { id: loginUser.id } }
       );
@@ -177,9 +180,10 @@ function generateToken(userRegistered) {
   const userId = userRegistered.id;
   const name = userRegistered.name;
   const email = userRegistered.email;
+  const role = userRegistered instanceof User ? "user" : "admin";
   //create access token for authorization using jwt
   const accessToken = jwt.sign(
-    { userId, name, email },
+    { userId, name, email, role },
     process.env.ACCESS_TOKEN_SECRET,
     {
       expiresIn: "7d",
@@ -203,8 +207,57 @@ function generateToken(userRegistered) {
   return token;
 }
 
+const refreshToken = async (refreshToken, table = "user") => {
+  var responseError = new ResponseClass.ErrorResponse();
+  var responseSuccess = new ResponseClass.SuccessResponse();
+  const userTable = table == "user" ? User : Admin;
+
+  if (!refreshToken) {
+    responseError.message = "Refresh Token is missing";
+    return responseError;
+  }
+
+  try {
+    const loginUser = await userTable.findOne({
+      where: { refresh_token: refreshToken },
+    });
+
+    if (loginUser !== null) {
+      const resultToken = generateToken(loginUser);
+
+      await userTable.update(
+        { refresh_token: resultToken.refreshToken },
+        {
+          where: {
+            id: loginUser.id,
+          },
+        }
+      );
+
+      const loginResult = {
+        status: true,
+        userId: loginUser.id,
+        name: loginUser.name,
+        refresh_token: resultToken.refreshToken,
+        accessToken: resultToken.accessToken,
+      };
+
+      return loginResult;
+    } else {
+      responseError.message = "Refresh Token not found";
+      return responseError;
+    }
+  } catch (error) {
+    console.log(error);
+    responseError.code = 500;
+    responseError.message = error;
+    return responseError;
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   logoutUser,
+  refreshToken,
 };
