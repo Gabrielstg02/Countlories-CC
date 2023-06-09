@@ -11,6 +11,7 @@ const {
   UserController,
   MenuController,
   BlogController,
+  ForumController,
 } = require("../controllers");
 const {
   verifyToken,
@@ -76,6 +77,30 @@ router.get("/blogs/:id", BlogController.getBlogById);
 router.post("/blogs", verifyAdminToken, BlogController.createBlog);
 router.put("/blogs/:id", verifyAdminToken, BlogController.updateBlog);
 router.delete("/blogs/:id", verifyAdminToken, BlogController.deleteBlog);
+
+/** Router Forum */
+router.get("/forums", ForumController.getAllForums);
+router.get("/forums/:id", ForumController.getForumById);
+router.post("/forums", verifyToken, ForumController.createForum);
+router.put("/forums/:id", verifyToken, ForumController.updateForum);
+router.delete("/forums/:id", verifyToken, ForumController.deleteForum);
+
+/** Router Forum Comment */
+router.post(
+  "/forums/:id/comments",
+  verifyToken,
+  ForumController.createForumComment
+);
+router.put(
+  "/forums/comments/:id",
+  verifyToken,
+  ForumController.updateForumComment
+);
+router.delete(
+  "/forums/comments/:id",
+  verifyToken,
+  ForumController.deleteForumComment
+);
 
 /* Error handler middleware */
 // incase we forgot to impelement error handler in our controller/services

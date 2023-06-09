@@ -87,7 +87,6 @@ const getUserHistory = async (id) => {
       include: [
         {
           model: db["Menu"],
-          as: "menu",
         },
       ],
     });
@@ -129,6 +128,7 @@ const deleteUserHistory = async (id) => {
         id: id,
       },
     });
+    console.log(history);
     if (history == 0) {
       responseError.code = 404;
       responseError.message = "History Not Found";
@@ -155,7 +155,6 @@ const getUserFavorite = async (id) => {
       include: [
         {
           model: db["Menu"],
-          as: "menu",
         },
       ],
     });
