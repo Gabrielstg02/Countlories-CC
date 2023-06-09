@@ -1,6 +1,7 @@
 const BlogService = require("../services/BlogService");
 const ImageService = require("../services/ImageService");
 const RequestValidator = require("../utils/request");
+const ResponseClass = require("../utils/response");
 
 const getAllBlogs = async (req, res) => {
   try {
@@ -8,6 +9,9 @@ const getAllBlogs = async (req, res) => {
     res.status(blogs.code).json(blogs);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -17,6 +21,9 @@ const getBlogById = async (req, res) => {
     res.status(blog.code).json(blog);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -35,6 +42,9 @@ const deleteBlog = async (req, res) => {
     res.status(deleteBlog.code).json(deleteBlog);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -42,6 +52,16 @@ const updateBlog = async (req, res) => {
   try {
     if (req.files) {
       const blog = await BlogService.getBlogById(req.params.id);
+      if (blog.data === null) {
+        return res
+          .status(404)
+          .json(
+            new ResponseClass.ErrorResponse(
+              (code = 404),
+              (message = "Blog not found")
+            )
+          );
+      }
       const filename = ImageService.getFilename(blog.data.image);
       const deleteImage = await ImageService.deleteFromGcs(filename);
       if (deleteImage.code !== 200 && deleteImage.code !== 404) {
@@ -57,6 +77,9 @@ const updateBlog = async (req, res) => {
     res.status(updateBlog.code).json(updateBlog);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -82,6 +105,9 @@ const createBlog = async (req, res) => {
     res.status(createBlog.code).json(createBlog);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 

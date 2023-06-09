@@ -9,6 +9,9 @@ const getUserById = async (req, res) => {
     res.status(user.code).json(user);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -18,6 +21,9 @@ const getAllUsers = async (req, res) => {
     res.status(users.code).json(users);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -27,6 +33,9 @@ const deleteUser = async (req, res) => {
     res.status(user.code).json(user);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -36,6 +45,9 @@ const updateUser = async (req, res) => {
     res.status(user.code).json(user);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -45,6 +57,9 @@ const getUserHistory = async (req, res) => {
     res.status(history.code).json(history);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -54,6 +69,9 @@ const deleteUserHistory = async (req, res) => {
     res.status(history.code).json(history);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -63,6 +81,9 @@ const getUserFavorite = async (req, res) => {
     res.status(favorite.code).json(favorite);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -72,6 +93,9 @@ const deleteUserFavorite = async (req, res) => {
     res.status(favorite.code).json(favorite);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -81,6 +105,9 @@ const getCurrentUser = async (req, res) => {
     res.status(user.code).json(user);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -90,6 +117,9 @@ const getCurrentUserHistory = async (req, res) => {
     res.status(history.code).json(history);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -115,6 +145,9 @@ const createCurrentUserHistory = async (req, res) => {
     res.status(userHistory.code).json(userHistory);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -124,6 +157,9 @@ const getCurrentUserFavorite = async (req, res) => {
     res.status(favorite.code).json(favorite);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -138,6 +174,9 @@ const createCurrentUserFavorite = async (req, res) => {
     res.status(userFavorite.code).json(userFavorite);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 

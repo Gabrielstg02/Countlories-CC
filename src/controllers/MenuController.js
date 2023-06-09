@@ -1,6 +1,7 @@
 const MenuService = require("../services/MenuService");
 const ImageService = require("../services/ImageService");
 const RequestValidator = require("../utils/request");
+const ResponseClass = require("../utils/response");
 
 const getAllMenu = async (req, res) => {
   try {
@@ -8,6 +9,9 @@ const getAllMenu = async (req, res) => {
     res.status(menu.code).json(menu);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -17,6 +21,9 @@ const getMenuById = async (req, res) => {
     res.status(menu.code).json(menu);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -35,6 +42,9 @@ const deleteMenu = async (req, res) => {
     res.status(deleteMenu.code).json(deleteMenu);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -58,6 +68,9 @@ const updateMenu = async (req, res) => {
     res.status(updateMenu.code).json(updateMenu);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -88,6 +101,9 @@ const createMenu = async (req, res) => {
     res.status(createMenu.code).json(createMenu);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 

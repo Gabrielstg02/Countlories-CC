@@ -8,6 +8,9 @@ const register = async (req, res) => {
     res.status(User.code).json(User);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -43,6 +46,9 @@ const login = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -57,6 +63,9 @@ const logout = async (req, res) => {
     res.status(logoutResult.code).json(logoutResult);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -92,6 +101,9 @@ const loginAdmin = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -109,6 +121,9 @@ const logoutAdmin = async (req, res, next) => {
     res.status(logoutResult.code).json(logoutResult);
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -144,6 +159,9 @@ const refreshToken = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
@@ -180,6 +198,9 @@ const refreshTokenAdmin = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res
+      .status(500)
+      .json(new ResponseClass.ErrorResponse(500, "Internal Server Error"));
   }
 };
 
