@@ -13,8 +13,9 @@ This repository is used as working repository for cloud computing side of the Co
 * Install project dependencies:
     
     - Install all dependencies defined in package.json:
-    
-        `npm install`
+    ```bash
+        npm install
+    ```
     
 * Setup environment variables
 
@@ -22,18 +23,30 @@ This repository is used as working repository for cloud computing side of the Co
     
     - Copy the `.env.example` file and rename it to `.env`
     - Edit all sample fields with the correct environment variables for the application server
-    
+
 * Database migration (using [Sequelize](http://docs.sequelizejs.com)):
-    - Edit Database Configuration in `src/config/config.js`
-    - run: `npx sequelize-cli db:migrate`
-    - undo: `npx sequelize-cli db:migrate:undo`
-    - help: `npx sequelize-cli help`
+    - Edit Database Configuration in `src/config/config.json`
+    - run: 
+        ```bash 
+            npx sequelize-cli db:migrate 
+        ```
+    - undo: 
+        ```bash
+            npx sequelize-cli db:migrate:undo
+        ```
+    - help: 
+        ```bash
+            npx sequelize-cli help
+        ```
 
 * Cloud Bucket Configuration
     - Copy the `serviceaccountkey.example.json` file and rename it to `serviceaccountkey.json`
     - Copy the content of your service account key to `serviceaccountkey.json` with the access of Google Storage Object Admin for your bucket
 
-* `npm start`
+* Start Your Application 
+```bash
+    npm start
+```
 
 ## Contact
 |            Member           				| Student ID |                                                       Contacts                                                      |
