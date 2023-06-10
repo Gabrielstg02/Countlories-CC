@@ -80,7 +80,9 @@ router.delete("/blogs/:id", verifyAdminToken, BlogController.deleteBlog);
 
 /** Router Forum */
 router.get("/forums", ForumController.getAllForums);
+router.get("/forums/my", verifyToken, ForumController.getCurrentUserForums);
 router.get("/forums/:id", ForumController.getForumById);
+router.get("/forums/user/:id", ForumController.getForumsByUserId);
 router.post("/forums", verifyToken, ForumController.createForum);
 router.put("/forums/:id", verifyToken, ForumController.updateForum);
 router.delete("/forums/:id", verifyToken, ForumController.deleteForum);

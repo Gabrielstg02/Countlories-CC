@@ -66,7 +66,7 @@ const registerUser = async (requestBody) => {
 
     //return server error response
     responseError.code = 500;
-    responseError.message = error;
+    responseError.message = error.message;
 
     return responseError;
   }
@@ -171,7 +171,7 @@ const logoutUser = async (refreshToken, table = "user") => {
   } catch (error) {
     console.log(error);
     responseError.code = 500;
-    responseError.message = error;
+    responseError.message = error.message;
     return responseError;
   }
 };
@@ -250,7 +250,7 @@ const refreshToken = async (refreshToken, table = "user") => {
   } catch (error) {
     console.log(error);
     responseError.code = 500;
-    responseError.message = error;
+    responseError.message = error.message;
     return responseError;
   }
 };

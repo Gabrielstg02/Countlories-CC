@@ -1,17 +1,14 @@
-const Forum = require("../models/forum");
-const ForumComment = require("../models/forumcomment");
-const User = require("../models/user");
+const db = require("../models");
+const Forum = db["Forum"];
+const ForumComment = db["ForumComment"];
+const User = db["User"];
 const ResponseClass = require("../utils/response");
-const { Op } = require("sequelize");
+const { Sequelize } = require("sequelize");
 
-const createForum = async (body, image) => {
+const createForum = async (body) => {
   try {
-    const forum = await Forum.create({
-      title: body.title,
-      content: body.content,
-      image: image,
-      UserId: body.userId,
-    });
+    console.log(body);
+    const forum = await Forum.create(body);
     const responseSuccess = new ResponseClass.SuccessResponse();
     responseSuccess.message = "Forum created successfully";
     responseSuccess.data = forum;
@@ -19,14 +16,22 @@ const createForum = async (body, image) => {
   } catch (error) {
     const responseError = new ResponseClass.ErrorResponse();
     responseError.code = 500;
-    responseError.message = error;
+    responseError.message = error.message;
     return responseError;
   }
 };
 
-const getAllForums = async () => {
+const getAllForums = async (option = {}) => {
   try {
     const forums = await Forum.findAll({
+      attributes: {
+        include: [
+          [
+            Sequelize.fn("COUNT", Sequelize.col("forumcomments.id")),
+            "CommentCount",
+          ],
+        ],
+      },
       include: [
         {
           model: User,
@@ -34,15 +39,12 @@ const getAllForums = async () => {
         },
         {
           model: ForumComment,
-          include: [
-            {
-              model: User,
-              attributes: ["name"],
-            },
-          ],
+          attributes: [],
+          // required: false,
         },
       ],
-      order: [["createdAt", "DESC"]],
+      group: ["Forum.id"],
+      ...option,
     });
     const responseSuccess = new ResponseClass.SuccessResponse();
     responseSuccess.message = "Get all forums successfully";
@@ -51,7 +53,7 @@ const getAllForums = async () => {
   } catch (error) {
     const responseError = new ResponseClass.ErrorResponse();
     responseError.code = 500;
-    responseError.message = error;
+    responseError.message = error.message;
     return responseError;
   }
 };
@@ -89,7 +91,7 @@ const getForumById = async (id) => {
   } catch (error) {
     const responseError = new ResponseClass.ErrorResponse();
     responseError.code = 500;
-    responseError.message = error;
+    responseError.message = error.message;
     return responseError;
   }
 };
@@ -116,15 +118,13 @@ const deleteForum = async (id, permanent = false) => {
   } catch (error) {
     const responseError = new ResponseClass.ErrorResponse();
     responseError.code = 500;
-    responseError.message = error;
+    responseError.message = error.message;
     return responseError;
   }
 };
 
 const updateForum = async (id, body) => {
   try {
-    const title = body.title;
-    const content = body.content;
     let forum = await Forum.findOne({
       where: { id: id },
     });
@@ -134,15 +134,9 @@ const updateForum = async (id, body) => {
       responseError.message = "Forum not found";
       return responseError;
     }
-    forum = await Forum.update(
-      {
-        title,
-        content,
-      },
-      {
-        where: { id: id },
-      }
-    );
+    forum = await Forum.update(body, {
+      where: { id: id },
+    });
     const responseSuccess = new ResponseClass.SuccessResponse();
     responseSuccess.message = "Forum updated successfully";
     responseSuccess.data = forum;
@@ -150,18 +144,14 @@ const updateForum = async (id, body) => {
   } catch (error) {
     const responseError = new ResponseClass.ErrorResponse();
     responseError.code = 500;
-    responseError.message = error;
+    responseError.message = error.message;
     return responseError;
   }
 };
 
 const createForumComment = async (body) => {
   try {
-    const forumComment = await ForumComment.create({
-      content: body.content,
-      ForumId: body.forumId,
-      UserId: body.userId,
-    });
+    const forumComment = await ForumComment.create(body);
     const responseSuccess = new ResponseClass.SuccessResponse();
     responseSuccess.message = "Forum comment created successfully";
     responseSuccess.data = forumComment;
@@ -169,7 +159,7 @@ const createForumComment = async (body) => {
   } catch (error) {
     const responseError = new ResponseClass.ErrorResponse();
     responseError.code = 500;
-    responseError.message = error;
+    responseError.message = error.message;
     return responseError;
   }
 };
@@ -186,14 +176,17 @@ const updateForumComment = async (id, body) => {
       responseError.message = "Forum comment not found";
       return responseError;
     }
-    forumComment = await ForumComment.update(
-      {
-        content,
-      },
-      {
-        where: { id: id },
-      }
-    );
+    console.log(body.role);
+    if (forumComment.UserId !== body.UserId && body.role !== "admin") {
+      const responseError = new ResponseClass.ErrorResponse();
+      responseError.code = 403;
+      responseError.message = "You are not allowed to edit this comment";
+      return responseError;
+    }
+    delete body.UserId;
+    forumComment = await ForumComment.update(body, {
+      where: { id: id },
+    });
     const responseSuccess = new ResponseClass.SuccessResponse();
     responseSuccess.message = "Forum comment updated successfully";
     responseSuccess.data = forumComment;
@@ -201,24 +194,39 @@ const updateForumComment = async (id, body) => {
   } catch (error) {
     const responseError = new ResponseClass.ErrorResponse();
     responseError.code = 500;
-    responseError.message = error;
+    responseError.message = error.message;
     return responseError;
   }
 };
 
 const deleteForumComment = async (id) => {
   try {
-    const forumComment = await ForumComment.destroy({
+    const forumComment = await ForumComment.findOne({
+      where: { id: id },
+    });
+    if (forumComment === null) {
+      const responseError = new ResponseClass.ErrorResponse();
+      responseError.code = 404;
+      responseError.message = "Forum comment not found";
+      return responseError;
+    }
+    if (forumComment.UserId !== body.UserId && body.role !== "admin") {
+      const responseError = new ResponseClass.ErrorResponse();
+      responseError.code = 403;
+      responseError.message = "You are not allowed to delete this comment";
+      return responseError;
+    }
+    const deletedForumComment = await ForumComment.destroy({
       where: { id: id },
     });
     const responseSuccess = new ResponseClass.SuccessResponse();
     responseSuccess.message = "Forum comment deleted successfully";
-    responseSuccess.data = forumComment;
+    responseSuccess.data = deletedForumComment;
     return responseSuccess;
   } catch (error) {
     const responseError = new ResponseClass.ErrorResponse();
     responseError.code = 500;
-    responseError.message = error;
+    responseError.message = error.message;
     return responseError;
   }
 };

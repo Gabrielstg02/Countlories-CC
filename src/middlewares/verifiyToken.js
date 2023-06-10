@@ -21,6 +21,7 @@ const verifyToken = (req, res, next) => {
       responseError.code = 401;
       return res.json(responseError);
     }
+    req.role = decoded.role;
     req.userId = decoded.userId;
     req.email = decoded.email;
     next();

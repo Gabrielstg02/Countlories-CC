@@ -32,10 +32,22 @@ const deleteBlog = async (req, res) => {
     const permanent = req.query.permanent ? req.query.permanent : false;
     if (permanent) {
       const blog = await BlogService.getBlogById(req.params.id);
-      const filename = ImageService.getFilename(blog.data.image);
-      const deleteImage = await ImageService.deleteFromGcs(filename);
-      if (deleteImage.code !== 200 && deleteImage.code !== 404) {
-        return res.status(deleteImage.code).json(deleteImage);
+      if (blog.data === null) {
+        return res
+          .status(404)
+          .json(
+            new ResponseClass.ErrorResponse(
+              (code = 404),
+              (message = "Blog not found")
+            )
+          );
+      }
+      if (blog.data.image !== null) {
+        const filename = ImageService.getFilename(blog.data.image);
+        const deleteImage = await ImageService.deleteFromGcs(filename);
+        if (deleteImage.code !== 200 && deleteImage.code !== 404) {
+          return res.status(deleteImage.code).json(deleteImage);
+        }
       }
     }
     const deleteBlog = await BlogService.deleteBlog(req.params.id, permanent);
@@ -62,10 +74,12 @@ const updateBlog = async (req, res) => {
             )
           );
       }
-      const filename = ImageService.getFilename(blog.data.image);
-      const deleteImage = await ImageService.deleteFromGcs(filename);
-      if (deleteImage.code !== 200 && deleteImage.code !== 404) {
-        return res.status(deleteImage.code).json(deleteImage);
+      if (blog.data.image !== null) {
+        const filename = ImageService.getFilename(blog.data.image);
+        const deleteImage = await ImageService.deleteFromGcs(filename);
+        if (deleteImage.code !== 200 && deleteImage.code !== 404) {
+          return res.status(deleteImage.code).json(deleteImage);
+        }
       }
       const uploadImage = await ImageService.uploadToGcs(req.files[0], "Blog");
       if (uploadImage.code !== 200) {
