@@ -27,7 +27,7 @@ const getAllForums = async (option = {}) => {
       attributes: {
         include: [
           [
-            Sequelize.fn("COUNT", Sequelize.col("forumcomments.id")),
+            Sequelize.fn("COUNT", Sequelize.col("ForumComments.id")),
             "CommentCount",
           ],
         ],
