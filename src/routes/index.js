@@ -5,6 +5,19 @@ const multer = Multer({
   limits: {
     fileSize: 10 * 1024 * 1024, // Maximum file size is 10MB
   },
+  fileFilter: (req, file, cb) => {
+    const allowedMimes = ["image/jpeg", "image/png", "image/jpg"];
+    if (allowedMimes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(
+        new Error(
+          "Invalid file type. Only JPEG, PNG and JPG image files are allowed."
+        ),
+        false
+      );
+    }
+  },
 });
 const {
   AuthController,
@@ -12,6 +25,7 @@ const {
   MenuController,
   BlogController,
   ForumController,
+  PredictController,
 } = require("../controllers");
 const {
   verifyToken,
@@ -104,12 +118,19 @@ router.delete(
   ForumController.deleteForumComment
 );
 
+/** Router Predict */
+router.post("/predict", PredictController.predict);
+
 /* Error handler middleware */
 // incase we forgot to impelement error handler in our controller/services
 router.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   console.error(err.message, err.stack);
-  return res.status(statusCode).json({ message: err.message });
+  return res.status(statusCode).json({
+    status: "error",
+    code: 500,
+    message: err.message,
+  });
 });
 
 router.all("*", (req, res) => {

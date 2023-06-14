@@ -108,6 +108,7 @@ const createMenu = async (req, res) => {
     }
     const validate = RequestValidator.verifyRequest(req.body, [
       "name",
+      "label",
       "kkal",
       "description",
     ]);

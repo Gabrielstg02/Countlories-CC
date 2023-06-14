@@ -2,11 +2,13 @@ const db = require("../models");
 const Menu = db["Menu"];
 const ResponseClass = require("../utils/response.js");
 
-const getAllMenu = async () => {
+const getAllMenu = async (option = {}) => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessResponse();
   try {
-    const menu = await Menu.findAll();
+    const menu = await Menu.findAll({
+      ...option,
+    });
     responseSuccess.message = "Get All Menu Success";
     responseSuccess.data = menu;
     return responseSuccess;

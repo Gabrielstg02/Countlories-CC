@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   Menu.init(
     {
       name: DataTypes.STRING,
+      label: DataTypes.STRING,
       kkal: DataTypes.INTEGER,
       description: DataTypes.TEXT,
       image: DataTypes.STRING,
