@@ -6,6 +6,7 @@ This branch is API for Predict with Machine Learning Model
 
 ## This application built with
 * Flask
+* Tensorflow
 
 # How to setup Locally
 1. Clone repository following this command
