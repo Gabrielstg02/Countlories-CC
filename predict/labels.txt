@@ -1,0 +1,14 @@
+ayam_goreng
+ayam_pop
+daging_rendang
+dendeng_batokok
+gulai_ikan
+gulai_tambusu
+gulai_tunjang
+lele_goreng
+nasi
+tahu_goreng
+telur_dadar_goreng
+telur_matasapi_goreng
+telur_rebus_balado
+tempe_goreng

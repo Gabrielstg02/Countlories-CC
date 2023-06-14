@@ -1,0 +1,5 @@
+runtime: python39
+service: machine-learning
+entrypoint: gunicorn -b :$PORT app:app
+env_variables:
+  FLASK_ENV: production
