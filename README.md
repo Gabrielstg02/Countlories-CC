@@ -2,51 +2,69 @@
 
 This repository is used as working repository for cloud computing side of the Countlories project as part of Bangkit 2023's Product-based Project.
 
+This branch is API for Predict with Machine Learning Model
+
 ## This application built with
-* [Express JS](https://expressjs.com/)
-* [Sequelize](https://sequelize.org/)
-* other libraries included in "package.json" file
+* Flask
 
-## Getting Started
-* Install Node.js
-* Install npm
-* Install project dependencies:
-    
-    - Install all dependencies defined in package.json:
-    ```bash
-        npm install
+# How to setup Locally
+1. Clone repository following this command
     ```
-    
-* Setup environment variables
+    git clone https://github.com/Gabrielstg02/Countlories-CC.git
+    ```
+2. Open git folder  
+    ```
+    cd Countlories-CC/
+    ```
+3. Check out to predict branch
+    ```
+    git checkout predict
+    ```
+4. Open the predict folder
+    ```
+    cd predict/
+    ```
+5. Install python3 (>3.9 or latest)
+6. Install pip (>18.1 or latest)
+7. Install requirements.txt
+    ```
+    pip install -r requirements.txt
+    ```
+8. Run app
+    ```
+    python main.py
+    ```
+    or
+    ```
+    flask run
+    ```
+9. Test the API using `Postman` with `POST` Method, route `/predict` with image request body
 
-    This project uses [dotenv](https://www.npmjs.com/package/dotenv), please configure the proper environment variables before running this application.
-    
-    - Copy the `.env.example` file and rename it to `.env`
-    - Edit all sample fields with the correct environment variables for the application server
-
-* Database migration (using [Sequelize](http://docs.sequelizejs.com)):
-    - Edit Database Configuration in `src/config/config.json`
-    - run: 
-        ```bash 
-            npx sequelize-cli db:migrate 
-        ```
-    - undo: 
-        ```bash
-            npx sequelize-cli db:migrate:undo
-        ```
-    - help: 
-        ```bash
-            npx sequelize-cli help
-        ```
-
-* Cloud Bucket Configuration
-    - Copy the `example.serviceaccountkey.json` file and rename it to `serviceaccountkey.json`
-    - Copy the content of your service account key to `serviceaccountkey.json` with the access of Google Storage Object Admin for your bucket
-
-* Start Your Application 
-```bash
-    npm start
-```
+## How to setup with Google Cloud Platform using App Engine
+1. Open cloud shell and set the project id
+    ```
+    gcloud config set project PROJECT_ID
+    ```
+2. Clone repository following this command
+    ```
+    git clone https://github.com/Gabrielstg02/Countlories-CC.git
+    ```
+3. Open git folder  
+    ```
+    cd Countlories-CC/
+    ```
+4. Check out to predict branch
+    ```
+    git checkout predict
+    ```
+5. Open the predict folder
+    ```
+    cd predict/
+    ```
+6. Deploy the app
+    ```
+    gcloud app deploy
+    ```
 
 ## Contact
 |            Member           				| Student ID |                                                       Contacts                                                      |
@@ -56,3 +74,8 @@ This repository is used as working repository for cloud computing side of the Co
 
 ## Project Link
 [Countlories Landing Page](https://github.com/IpunkDkk/Countlories)
+
+## API Documentation
+[Countlories API Documentation](https://documenter.getpostman.com/view/16658155/Tz5tWv7M)
+or
+You can export the postman collection from this repository
