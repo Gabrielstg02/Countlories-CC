@@ -76,6 +76,6 @@ This branch is API for Predict with Machine Learning Model
 [Countlories Landing Page](https://github.com/IpunkDkk/Countlories)
 
 ## API Documentation
-[Countlories API Documentation](https://documenter.getpostman.com/view/16658155/Tz5tWv7M)
+[Countlories API Documentation](https://documenter.getpostman.com/view/7864923/2s93sc3XD1)
 or
 You can export the postman collection from this repository
