@@ -5,7 +5,14 @@ const ResponseClass = require("../utils/response");
 
 const getAllBlogs = async (req, res) => {
   try {
-    const blogs = await BlogService.getAllBlogs();
+    const limit = req.query.limit ? Number(req.query.limit) : null;
+    const order = req.query.order ? req.query.order : "DESC";
+    const sort = req.query.sort ? req.query.sort : "createdAt";
+    const options = {
+      limit: limit,
+      order: [[sort, order]],
+    };
+    const blogs = await BlogService.getAllBlogs(options);
     res.status(blogs.code).json(blogs);
   } catch (error) {
     console.log(error);

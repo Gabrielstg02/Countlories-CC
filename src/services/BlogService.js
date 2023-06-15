@@ -2,11 +2,11 @@ const db = require("../models");
 const Blog = db["Blog"];
 const ResponseClass = require("../utils/response.js");
 
-const getAllBlogs = async () => {
+const getAllBlogs = async (options = {}) => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessResponse();
   try {
-    const blogs = await Blog.findAll();
+    const blogs = await Blog.findAll({ ...options });
     responseSuccess.message = "Get All Blogs Success";
     responseSuccess.data = blogs;
     return responseSuccess;
