@@ -70,10 +70,7 @@ This repository is used as working repository for cloud computing side of the Co
     - Copy the `.env.example` file and rename it to `.env`
     - Edit all sample fields with the correct environment variables for the application server
     - For `PREDICT_API_URL`, Use Deployed link of API in `predict` branch in this repository
-    - add this line to `.env`
-        ```
-            NODE_ENV=production
-        ```
+    
 6. Setup Database
     - Edit Database Configuration in `src/config/config.json`
     - Install `sequelize-cli` in cloud shell
