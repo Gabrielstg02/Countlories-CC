@@ -23,7 +23,7 @@ This repository is used as working repository for cloud computing side of the Co
     
     - Copy the `.env.example` file and rename it to `.env`
     - Edit all sample fields with the correct environment variables for the application server
-    - For `PREDICT_API_URL`, Use Local or Deployed link of API in `predict` branch in this repository
+    - For `PREDICT_API_URL`, Use Local or Deployed link of API in [predict](https://github.com/Gabrielstg02/Countlories-CC/tree/predict) branch in this repository
 
 * Database migration (using [Sequelize](http://docs.sequelizejs.com)):
     - Edit Database Configuration in `src/config/config.json`
@@ -69,7 +69,7 @@ This repository is used as working repository for cloud computing side of the Co
 4. Setup env
     - Copy the `.env.example` file and rename it to `.env`
     - Edit all sample fields with the correct environment variables for the application server
-    - For `PREDICT_API_URL`, Use Deployed link of API in `predict` branch in this repository
+    - For `PREDICT_API_URL`, Use Deployed link of API in [predict](https://github.com/Gabrielstg02/Countlories-CC/tree/predict) branch in this repository
     
 6. Setup Database
     - Edit Database Configuration in `src/config/config.json`
