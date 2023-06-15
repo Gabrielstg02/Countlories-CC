@@ -42,7 +42,7 @@ const deleteMenu = async (req, res) => {
             )
           );
       }
-      if (menu.data.image !== null) {
+      if (menu.data.image) {
         const filename = ImageService.getFilename(menu.data.image);
         const deleteImage = await ImageService.deleteFromGcs(filename);
         if (deleteImage.code !== 200 && deleteImage.code !== 404) {
@@ -75,7 +75,7 @@ const updateMenu = async (req, res) => {
             )
           );
       }
-      if (menu.data.image !== null) {
+      if (menu.data.image) {
         const filename = ImageService.getFilename(menu.data.image);
         const deleteImage = await ImageService.deleteFromGcs(filename);
         if (deleteImage.code !== 200 && deleteImage.code !== 404) {

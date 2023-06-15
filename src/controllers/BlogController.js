@@ -42,7 +42,7 @@ const deleteBlog = async (req, res) => {
             )
           );
       }
-      if (blog.data.image !== null) {
+      if (blog.data.image) {
         const filename = ImageService.getFilename(blog.data.image);
         const deleteImage = await ImageService.deleteFromGcs(filename);
         if (deleteImage.code !== 200 && deleteImage.code !== 404) {
@@ -74,7 +74,7 @@ const updateBlog = async (req, res) => {
             )
           );
       }
-      if (blog.data.image !== null) {
+      if (blog.data.image) {
         const filename = ImageService.getFilename(blog.data.image);
         const deleteImage = await ImageService.deleteFromGcs(filename);
         if (deleteImage.code !== 200 && deleteImage.code !== 404) {
