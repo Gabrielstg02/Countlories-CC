@@ -67,11 +67,11 @@ const createForum = async (req, res) => {
         .json(new ResponseClass.ErrorResponse(400, "Image is required"));
     }
     const body = req.body;
-    body.userId = req.userId;
+    body.UserId = req.userId;
     const validate = RequestValidator.verifyRequest(body, [
       "title",
       "description",
-      "userId",
+      "UserId",
     ]);
 
     if (validate !== true) {
@@ -109,7 +109,7 @@ const updateForum = async (req, res) => {
             )
           );
       }
-      if (forum.data.image !== null) {
+      if (forum.data.image) {
         const filename = ImageService.getFilename(forum.data.image);
         const deleteImage = await ImageService.deleteFromGcs(filename);
         if (deleteImage.code !== 200 && deleteImage.code !== 404) {
@@ -147,7 +147,7 @@ const deleteForum = async (req, res) => {
             )
           );
       }
-      if (forum.data.image !== null) {
+      if (forum.data.image) {
         const filename = ImageService.getFilename(forum.data.image);
         const deleteImage = await ImageService.deleteFromGcs(filename);
         if (deleteImage.code !== 200 && deleteImage.code !== 404) {
