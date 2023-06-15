@@ -1,0 +1,3450 @@
+{
+	"info": {
+		"_postman_id": "bd5a93d6-6c7b-44ba-ba1b-53ad202b198f",
+		"name": "Countlories",
+		"description": "This collection provides a set of APIs for the Countlories application which is part of Bangkit 2023's Product-based Project.\n\nEndFragmen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7864923",
+		"_collection_link": "https://countlories.postman.co/workspace/Countlories~252fdf09-054e-428e-986d-4f296e539434/collection/7864923-bd5a93d6-6c7b-44ba-ba1b-53ad202b198f?action=share&creator=7864923&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "USER",
+					"item": [
+						{
+							"name": "REGISTER",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Cahya Gumilang",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "user@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "User1234",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/register",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "REGISTER",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Cahya Gumilang",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "user@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "User1234",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{host}}/register",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"register"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "135"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"87-GgoYKeRtisFQCRthhHbzMSK8OeA\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 09 Jun 2023 05:46:01 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"code\": 201,\n    \"message\": \"Register Success\",\n    \"data\": {\n        \"name\": \"Cahya Gumilang\",\n        \"email\": \"user@gmail.com\",\n        \"password\": \"User1234\"\n    }\n}"
+								},
+								{
+									"name": "PASSWORD FAILED",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Cahya Gumilang",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "user@gmail.coma",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "a",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{host}}/register",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"register"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "331"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"14b-ZU8QMcLJGWLejPtPWzsiGtyVN00\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 09 Jun 2023 10:10:40 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": false,\n    \"code\": 400,\n    \"message\": [\n        {\n            \"validation\": \"min\",\n            \"arguments\": 8,\n            \"message\": \"The string should have a minimum length of 8 characters\"\n        },\n        {\n            \"validation\": \"uppercase\",\n            \"message\": \"The string should have a minimum of 1 uppercase letter\"\n        },\n        {\n            \"validation\": \"digits\",\n            \"arguments\": 2,\n            \"message\": \"The string should have a minimum of 2 digits\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "LOGIN",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"\r",
+											"postman.setEnvironmentVariable(\"token\", jsonData.data.authentication_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "user@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "User1234",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "SUCCESS",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "email",
+													"value": "user@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "User1234",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{host}}/login",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsIm5hbWUiOiJDYWh5YSBHdW1pbGFuZyIsImVtYWlsIjoidXNlckBnbWFpbC5jb20iLCJpYXQiOjE2ODYyODk4NzUsImV4cCI6MTY4ODg4MTg3NX0.NCLP_Xxl4vrS1nfpXqY2dt6TF8t6pubKqVeahzxmiI8; Max-Age=86400; Path=/; Expires=Sat, 10 Jun 2023 05:51:16 GMT; HttpOnly"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "406"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"196-uApLF3xHZqx5oWa+MKAx78gBfvU\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 09 Jun 2023 05:51:16 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Login Success\",\n    \"data\": {\n        \"object\": \"authentication_token\",\n        \"userId\": 4,\n        \"name\": \"Cahya Gumilang\",\n        \"email\": \"user@gmail.com\",\n        \"authentication_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsIm5hbWUiOiJDYWh5YSBHdW1pbGFuZyIsImVtYWlsIjoidXNlckBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTY4NjI4OTg3NSwiZXhwIjoxNjg2ODk0Njc1fQ.GYYCKy91e2dd6OT7lh341x0xZOWGFC3cAGaojGUCxtQ\"\n    }\n}"
+								},
+								{
+									"name": "FAILED",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "email",
+													"value": "user@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "User1234aa",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{host}}/login",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "55"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"37-JTKmZxpvdj6gyxQq+z+qfWcWbeA\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 09 Jun 2023 10:09:58 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": false,\n    \"code\": 400,\n    \"message\": \"Wrong Password!\"\n}"
+								}
+							]
+						},
+						{
+							"name": "LOGOUT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){\r",
+											"    postman.setEnvironmentVariable(\"token\", \"\");\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/logout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "LOGOUT",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/logout",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"logout"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "61"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3d-y0VICDjh/10h1qRNoyDJjwYxSH4\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 09 Jun 2023 10:11:29 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"You've Been Logged Out\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "ADMIN",
+					"item": [
+						{
+							"name": "LOGOUT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code == 200){\r",
+											"    postman.setEnvironmentVariable(\"token\", \"\");\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/admin/logout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"admin",
+										"logout"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "LOGOUT",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/admin/logout",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"admin",
+												"logout"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"4d-hsZ5RhrbhIRNwe83aaspFRiqpvM\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 09 Jun 2023 05:52:17 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "LOGIN",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"\r",
+											"postman.setEnvironmentVariable(\"token\", jsonData.data.authentication_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "admin@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "admin123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/admin/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"admin",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "LOGIN",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "email",
+													"value": "admin@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "admin123",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{host}}/admin/login",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"admin",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJBZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNjg2MjkxMzYyLCJleHAiOjE2ODg4ODMzNjJ9.bW2ZHdOOGdeKd_zYs9WVRTmP85V88JU9LvUb7h8rsS8; Max-Age=86400; Path=/; Expires=Sat, 10 Jun 2023 06:16:02 GMT; HttpOnly"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "388"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"184-SaUVWjd+jqGbCycis5n+SCRb17w\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 09 Jun 2023 06:16:02 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Login Success\",\n    \"data\": {\n        \"object\": \"authentication_token\",\n        \"userId\": 1,\n        \"name\": \"Admin\",\n        \"email\": \"admin@gmail.com\",\n        \"authentication_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJBZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg2MjkxMzYyLCJleHAiOjE2ODY4OTYxNjJ9.fUbPTkFHkdUt_Eh4YwYgljXrsJT_8hUXHLBzN5BqDHQ\"\n    }\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "BLOGS",
+			"item": [
+				{
+					"name": "ALL BLOG",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/blogs",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"blogs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ALL BLOG",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/blogs",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"blogs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "547"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"223-RNe8BI2RcvaRd9NLMb3Ue06b40Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:14:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get All Blogs Success\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"title\": \"test blog\",\n            \"content\": \"Test Content Blog\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Blog/20230609-171210.png\",\n            \"createdAt\": \"2023-06-09T10:12:15.000Z\",\n            \"updatedAt\": \"2023-06-09T10:12:15.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 3,\n            \"title\": \"test blog\",\n            \"content\": \"Test Content Blog\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Blog/20230609-171451.png\",\n            \"createdAt\": \"2023-06-09T10:14:55.000Z\",\n            \"updatedAt\": \"2023-06-09T10:14:55.000Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "BLOG BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/blogs/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"blogs",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "BLOG BY ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/blogs/2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"blogs",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "547"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"223-RNe8BI2RcvaRd9NLMb3Ue06b40Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:15:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get All Blogs Success\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"title\": \"test blog\",\n            \"content\": \"Test Content Blog\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Blog/20230609-171210.png\",\n            \"createdAt\": \"2023-06-09T10:12:15.000Z\",\n            \"updatedAt\": \"2023-06-09T10:12:15.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 3,\n            \"title\": \"test blog\",\n            \"content\": \"Test Content Blog\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Blog/20230609-171451.png\",\n            \"createdAt\": \"2023-06-09T10:14:55.000Z\",\n            \"updatedAt\": \"2023-06-09T10:14:55.000Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "CREATE BLOG",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "test blog",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Test Content Blog",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "103650025_p0.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/blogs",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"blogs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CREATE BLOG",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "test blog",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Test Content Blog",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "103650025_p0.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/blogs",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"blogs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "287"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"11f-RkuoYCkdKfge+sdlgC7nDiTLbY4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:12:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Create Blog Success\",\n    \"data\": {\n        \"id\": 2,\n        \"title\": \"test blog\",\n        \"content\": \"Test Content Blog\",\n        \"image\": \"https://storage.googleapis.com/countlories-bucket/Blog/20230609-171210.png\",\n        \"updatedAt\": \"2023-06-09T10:12:15.340Z\",\n        \"createdAt\": \"2023-06-09T10:12:15.340Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "UPDATE BLOG",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "test update title",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "test update content",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "103811948_p0.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/blogs/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"blogs",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "UPDATE BLOG",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "test update title",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "test update content",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "103811948_p0.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/blogs/2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"blogs",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-sVv7OF25cqgNObRUTCgLALzeTJQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:16:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Update Blog Success\",\n    \"data\": [\n        1\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE BLOG",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/blogs/3?permanent=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"blogs",
+								"3"
+							],
+							"query": [
+								{
+									"key": "permanent",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE BLOG",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/blogs/3?permanent=1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"blogs",
+										"3"
+									],
+									"query": [
+										{
+											"key": "permanent",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-CgiehihhfyL7GF5qEIA1Z5LkhDk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:17:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Delete Blog Success\",\n    \"data\": 1\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "FAVORITES",
+			"item": [
+				{
+					"name": "USER FAVORITE BY USER ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/3/favorite",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"3",
+								"favorite"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "USER FAVORITE BY USER ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/users/3/favorite",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"3",
+										"favorite"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "423"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a7-DD86KDMOUCfcLVsRKZwoO+G/fBY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:18:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get User Favorite Success\",\n    \"data\": [\n        {\n            \"id\": 4,\n            \"createdAt\": \"2023-06-04T07:55:58.000Z\",\n            \"updatedAt\": \"2023-06-04T07:55:58.000Z\",\n            \"MenuId\": 5,\n            \"UserId\": 3,\n            \"Menu\": {\n                \"id\": 5,\n                \"name\": \"test\",\n                \"kkal\": 100,\n                \"description\": \"asdasda\",\n                \"image\": \"https://storage.googleapis.com/countlories-bucket/Menu/20230604-143827\",\n                \"createdAt\": \"2023-06-04T07:38:31.000Z\",\n                \"updatedAt\": \"2023-06-04T07:38:31.000Z\",\n                \"deletedAt\": null\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "CURRENT USER FAVORITE",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/user/favorite",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"favorite"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CURRENT USER HISTORY Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/user/favorite",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"user",
+										"favorite"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "773"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"305-2O5NwqfLen3fcsoZQ4PBXqZLRLY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:19:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get User Favorite Success\",\n    \"data\": [\n        {\n            \"id\": 5,\n            \"createdAt\": \"2023-06-09T10:19:00.000Z\",\n            \"updatedAt\": \"2023-06-09T10:19:00.000Z\",\n            \"MenuId\": 5,\n            \"UserId\": 1,\n            \"Menu\": {\n                \"id\": 5,\n                \"name\": \"test\",\n                \"kkal\": 100,\n                \"description\": \"asdasda\",\n                \"image\": \"https://storage.googleapis.com/countlories-bucket/Menu/20230604-143827\",\n                \"createdAt\": \"2023-06-04T07:38:31.000Z\",\n                \"updatedAt\": \"2023-06-04T07:38:31.000Z\",\n                \"deletedAt\": null\n            }\n        },\n        {\n            \"id\": 6,\n            \"createdAt\": \"2023-06-09T10:19:03.000Z\",\n            \"updatedAt\": \"2023-06-09T10:19:03.000Z\",\n            \"MenuId\": 5,\n            \"UserId\": 1,\n            \"Menu\": {\n                \"id\": 5,\n                \"name\": \"test\",\n                \"kkal\": 100,\n                \"description\": \"asdasda\",\n                \"image\": \"https://storage.googleapis.com/countlories-bucket/Menu/20230604-143827\",\n                \"createdAt\": \"2023-06-04T07:38:31.000Z\",\n                \"updatedAt\": \"2023-06-04T07:38:31.000Z\",\n                \"deletedAt\": null\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "CREATE CURRENT USER FAVORITE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "menuId",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/user/favorite",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"favorite"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CREATE CURRENT USER FAVORITE",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "menuId",
+											"value": "5",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/user/favorite",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"user",
+										"favorite"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "185"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b9-0+1cVXctQEOmI3Vbe5SpeCflHvY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:19:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Create User Favorite Success\",\n    \"data\": {\n        \"id\": 6,\n        \"UserId\": 1,\n        \"MenuId\": \"5\",\n        \"updatedAt\": \"2023-06-09T10:19:03.145Z\",\n        \"createdAt\": \"2023-06-09T10:19:03.145Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE FAVORITE BY ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/users/favorite/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"favorite",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE FAVORITE BY ID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/users/favorite/5",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"favorite",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-+SZJW3uYujrxdapiKPtopnuCnds\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:19:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Delete User Success\",\n    \"data\": 0\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "HISTORIES",
+			"item": [
+				{
+					"name": "USER HISTORY BY USER ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/1/history",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"history"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "USER HISTORY BY USER ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/users/1/history",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"1",
+										"history"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "319"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"13f-hQIRbU4baZi42/AySJjhaaHWB9U\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:24:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get User History Success\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/UserHistory/20230609-172004.png\",\n            \"date\": \"2023-06-09T10:20:08.000Z\",\n            \"createdAt\": \"2023-06-09T10:20:08.000Z\",\n            \"updatedAt\": \"2023-06-09T10:20:08.000Z\",\n            \"MenuId\": 1,\n            \"UserId\": 1,\n            \"Menu\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "CURRENT USER HISTORY",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/user/history",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"history"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CURRENT USER HISTORY",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/user/history",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"user",
+										"history"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "566"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"236-L6Wp0l+j5N/LwMPLOAbEsnyoZSo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:20:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get User History Success\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/UserHistory/20230609-171955.png\",\n            \"date\": \"2023-06-09T10:19:59.000Z\",\n            \"createdAt\": \"2023-06-09T10:19:59.000Z\",\n            \"updatedAt\": \"2023-06-09T10:19:59.000Z\",\n            \"MenuId\": 1,\n            \"UserId\": 1,\n            \"Menu\": null\n        },\n        {\n            \"id\": 3,\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/UserHistory/20230609-172004.png\",\n            \"date\": \"2023-06-09T10:20:08.000Z\",\n            \"createdAt\": \"2023-06-09T10:20:08.000Z\",\n            \"updatedAt\": \"2023-06-09T10:20:08.000Z\",\n            \"MenuId\": 1,\n            \"UserId\": 1,\n            \"Menu\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE HISTORY BY ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/users/history/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"history",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE HISTORY BY ID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/users/history/2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"history",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b-5usj6ts4EAT/Gs51k4Zwwz8C9tk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:21:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Delete User History Success\",\n    \"data\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "CREATE CURRENT USER HISTORY",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "menuId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "103650025_p0.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/user/history",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"history"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CREATE CURRENT USER HISTORY",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "menuId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "103650025_p0.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/user/history",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"user",
+										"history"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "310"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"136-YgiMSp3vtYDhHNM+9YnMx0Sb0/E\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:20:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Create User History Success\",\n    \"data\": {\n        \"date\": \"2023-06-09T10:20:08.582Z\",\n        \"id\": 3,\n        \"UserId\": 1,\n        \"MenuId\": \"1\",\n        \"image\": \"https://storage.googleapis.com/countlories-bucket/UserHistory/20230609-172004.png\",\n        \"updatedAt\": \"2023-06-09T10:20:08.583Z\",\n        \"createdAt\": \"2023-06-09T10:20:08.583Z\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "MENUS",
+			"item": [
+				{
+					"name": "ALL MENU",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/menus",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"menus"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ALL MENU",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/menus",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"menus"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1267"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f3-EqSK9Aon334QlYP6P1ajWOETBE0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:24:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get All Menu Success\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"name\": \"Test Update\",\n            \"kkal\": 200,\n            \"description\": \"Test Update Deskripsi\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Menu/20230605-163329.jpg\",\n            \"createdAt\": \"2023-06-04T07:35:39.000Z\",\n            \"updatedAt\": \"2023-06-05T09:33:30.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 4,\n            \"name\": \"test\",\n            \"kkal\": 100,\n            \"description\": \"asdasda\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Menu/20230604-143614\",\n            \"createdAt\": \"2023-06-04T07:36:15.000Z\",\n            \"updatedAt\": \"2023-06-04T07:36:15.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 5,\n            \"name\": \"test\",\n            \"kkal\": 100,\n            \"description\": \"asdasda\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Menu/20230604-143827\",\n            \"createdAt\": \"2023-06-04T07:38:31.000Z\",\n            \"updatedAt\": \"2023-06-04T07:38:31.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 6,\n            \"name\": \"test\",\n            \"kkal\": 100,\n            \"description\": \"asdasda\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Menu/20230604-160858\",\n            \"createdAt\": \"2023-06-04T09:09:01.000Z\",\n            \"updatedAt\": \"2023-06-04T09:09:01.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 7,\n            \"name\": \"test\",\n            \"kkal\": 100,\n            \"description\": \"asdasda\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Menu/20230609-134710.png\",\n            \"createdAt\": \"2023-06-09T06:47:13.000Z\",\n            \"updatedAt\": \"2023-06-09T06:47:13.000Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "MENU BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/menus/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"menus",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "MENU BY ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/menus/3",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"menus",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1267"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f3-EqSK9Aon334QlYP6P1ajWOETBE0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:25:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get All Menu Success\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"name\": \"Test Update\",\n            \"kkal\": 200,\n            \"description\": \"Test Update Deskripsi\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Menu/20230605-163329.jpg\",\n            \"createdAt\": \"2023-06-04T07:35:39.000Z\",\n            \"updatedAt\": \"2023-06-05T09:33:30.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 4,\n            \"name\": \"test\",\n            \"kkal\": 100,\n            \"description\": \"asdasda\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Menu/20230604-143614\",\n            \"createdAt\": \"2023-06-04T07:36:15.000Z\",\n            \"updatedAt\": \"2023-06-04T07:36:15.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 5,\n            \"name\": \"test\",\n            \"kkal\": 100,\n            \"description\": \"asdasda\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Menu/20230604-143827\",\n            \"createdAt\": \"2023-06-04T07:38:31.000Z\",\n            \"updatedAt\": \"2023-06-04T07:38:31.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 6,\n            \"name\": \"test\",\n            \"kkal\": 100,\n            \"description\": \"asdasda\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Menu/20230604-160858\",\n            \"createdAt\": \"2023-06-04T09:09:01.000Z\",\n            \"updatedAt\": \"2023-06-04T09:09:01.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 7,\n            \"name\": \"test\",\n            \"kkal\": 100,\n            \"description\": \"asdasda\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Menu/20230609-134710.png\",\n            \"createdAt\": \"2023-06-09T06:47:13.000Z\",\n            \"updatedAt\": \"2023-06-09T06:47:13.000Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "CREATE MENU",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "103811948_p0.png"
+								},
+								{
+									"key": "name",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "kkal",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "asdasda",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/menus",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"menus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE MENU",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/menus/2?permanent=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"menus",
+								"2"
+							],
+							"query": [
+								{
+									"key": "permanent",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE MENU",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Test Update",
+									"type": "text"
+								},
+								{
+									"key": "kkal",
+									"value": "200",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Test Update Deskripsi",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "103677160_p0.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/menus/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"menus",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USERS",
+			"item": [
+				{
+					"name": "ALL USERS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ALL USERS",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "548"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"224-0wMrq61nDDCK9/bGlnGDjEyo8/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:25:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get All Users Success\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"Cahya Gumilang\",\n            \"email\": \"cahyagumilang2@gmail.com\",\n            \"createdAt\": \"2023-06-04T06:04:34.000Z\",\n            \"updatedAt\": \"2023-06-04T07:56:34.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Cahya Gumilang\",\n            \"email\": \"cahyagumilang3@gmail.com\",\n            \"createdAt\": \"2023-06-04T06:47:28.000Z\",\n            \"updatedAt\": \"2023-06-04T07:56:53.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Cahya Gumilang\",\n            \"email\": \"user@gmail.com\",\n            \"createdAt\": \"2023-06-09T05:46:01.000Z\",\n            \"updatedAt\": \"2023-06-09T10:11:29.000Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "USER BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "USER BY ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/users/2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "548"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"224-0wMrq61nDDCK9/bGlnGDjEyo8/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jun 2023 10:25:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get All Users Success\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"Cahya Gumilang\",\n            \"email\": \"cahyagumilang2@gmail.com\",\n            \"createdAt\": \"2023-06-04T06:04:34.000Z\",\n            \"updatedAt\": \"2023-06-04T07:56:34.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Cahya Gumilang\",\n            \"email\": \"cahyagumilang3@gmail.com\",\n            \"createdAt\": \"2023-06-04T06:47:28.000Z\",\n            \"updatedAt\": \"2023-06-04T07:56:53.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Cahya Gumilang\",\n            \"email\": \"user@gmail.com\",\n            \"createdAt\": \"2023-06-09T05:46:01.000Z\",\n            \"updatedAt\": \"2023-06-09T10:11:29.000Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE USER BY ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/users/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE USER",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Test Update",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/users/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CURRENT USER",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FORUMS",
+			"item": [
+				{
+					"name": "COMMENTS",
+					"item": [
+						{
+							"name": "CREATE FORUM COMMENT",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "comment",
+											"value": "Test Comment Cuy",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/forums/2/comments",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"forums",
+										"2",
+										"comments"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "New Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "comment",
+													"value": "Test Comment Cuy",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{host}}/forums/2/comments",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"forums",
+												"2",
+												"comments"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "221"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"dd-7b3fJ2u4aWz6hme3wO+63dAfhkU\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 10 Jun 2023 13:08:37 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Forum comment created successfully\",\n    \"data\": {\n        \"id\": 7,\n        \"comment\": \"Test Comment Cuy\",\n        \"UserId\": 2,\n        \"ForumId\": \"2\",\n        \"updatedAt\": \"2023-06-10T13:08:37.296Z\",\n        \"createdAt\": \"2023-06-10T13:08:37.296Z\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "EDIT FORUM COMMENT",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "comment",
+											"value": "Test Edit",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/forums/comments/5",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"forums",
+										"comments",
+										"5"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "New Request",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "comment",
+													"value": "Test Edit",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{host}}/forums/comments/5",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"forums",
+												"comments",
+												"5"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "84"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"54-U3LtWMVrenY63QYD2axsV0vLxVY\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 10 Jun 2023 13:12:48 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Forum comment updated successfully\",\n    \"data\": [\n        1\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "DELETE FORUM COMMENT",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/forums/comments/6",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"forums",
+										"comments",
+										"6"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "New Request",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{host}}/forums/comments/6",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"forums",
+												"comments",
+												"6"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "82"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"52-1ZDUFee2Keuw0YnzqmGJA9weigg\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 10 Jun 2023 13:14:13 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Forum comment deleted successfully\",\n    \"data\": 1\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "ALL FORUMS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/forums",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"forums"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/forums",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"forums"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "699"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2bb-X+zTIVPE8f1X9rl+nWny1fStLSw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 13:08:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get all forums successfully\",\n    \"data\": [\n        {\n            \"id\": 4,\n            \"title\": \"title\",\n            \"image\": \"https://storage.googleapis.com/countlories-bucket/Forum/20230610-193829.png\",\n            \"description\": \"desc\",\n            \"createdAt\": \"2023-06-10T12:38:31.000Z\",\n            \"updatedAt\": \"2023-06-10T12:38:31.000Z\",\n            \"UserId\": null,\n            \"CommentCount\": 0,\n            \"User\": null\n        },\n        {\n            \"id\": 3,\n            \"title\": null,\n            \"image\": null,\n            \"description\": null,\n            \"createdAt\": \"2023-06-10T12:37:49.000Z\",\n            \"updatedAt\": \"2023-06-10T12:37:49.000Z\",\n            \"UserId\": null,\n            \"CommentCount\": 0,\n            \"User\": null\n        },\n        {\n            \"id\": 2,\n            \"title\": \"title\",\n            \"image\": null,\n            \"description\": null,\n            \"createdAt\": \"2023-06-10T12:36:51.000Z\",\n            \"updatedAt\": \"2023-06-10T12:36:51.000Z\",\n            \"UserId\": 1,\n            \"CommentCount\": 3,\n            \"User\": {\n                \"name\": \"Cahya Gumilang\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "FORUM BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/forums/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"forums",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/forums/2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"forums",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "787"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"313-Jd0pYj+XkVpUQEVSewR08IGhVNM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 13:08:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get forum by id successfully\",\n    \"data\": {\n        \"id\": 2,\n        \"title\": \"title\",\n        \"image\": null,\n        \"description\": null,\n        \"createdAt\": \"2023-06-10T12:36:51.000Z\",\n        \"updatedAt\": \"2023-06-10T12:36:51.000Z\",\n        \"UserId\": 1,\n        \"User\": {\n            \"name\": \"Cahya Gumilang\"\n        },\n        \"ForumComments\": [\n            {\n                \"id\": 5,\n                \"comment\": \"Test Comment Cuy\",\n                \"createdAt\": \"2023-06-10T12:57:05.000Z\",\n                \"updatedAt\": \"2023-06-10T12:57:05.000Z\",\n                \"ForumId\": 2,\n                \"UserId\": 2,\n                \"User\": {\n                    \"name\": \"Cahya Gumilang\"\n                }\n            },\n            {\n                \"id\": 6,\n                \"comment\": \"Test Comment Cuy\",\n                \"createdAt\": \"2023-06-10T13:08:36.000Z\",\n                \"updatedAt\": \"2023-06-10T13:08:36.000Z\",\n                \"ForumId\": 2,\n                \"UserId\": 2,\n                \"User\": {\n                    \"name\": \"Cahya Gumilang\"\n                }\n            },\n            {\n                \"id\": 7,\n                \"comment\": \"Test Comment Cuy\",\n                \"createdAt\": \"2023-06-10T13:08:37.000Z\",\n                \"updatedAt\": \"2023-06-10T13:08:37.000Z\",\n                \"ForumId\": 2,\n                \"UserId\": 2,\n                \"User\": {\n                    \"name\": \"Cahya Gumilang\"\n                }\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "MY FORUMS",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/forums/my",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"forums",
+								"my"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "MY FORUMS",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/forums/my",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"forums",
+										"my"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "271"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10f-2whXH+6eaEMSFkwMqW44ARB2A58\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 13:09:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get all forums successfully\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"title\": \"title\",\n            \"image\": null,\n            \"description\": null,\n            \"createdAt\": \"2023-06-10T12:36:51.000Z\",\n            \"updatedAt\": \"2023-06-10T12:36:51.000Z\",\n            \"UserId\": 1,\n            \"CommentCount\": 3,\n            \"User\": {\n                \"name\": \"Cahya Gumilang\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "FORUMS USER BY USER ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/forums/user/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"forums",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/forums/user/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"forums",
+										"user",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "271"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10f-2whXH+6eaEMSFkwMqW44ARB2A58\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 13:09:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Get all forums successfully\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"title\": \"title\",\n            \"image\": null,\n            \"description\": null,\n            \"createdAt\": \"2023-06-10T12:36:51.000Z\",\n            \"updatedAt\": \"2023-06-10T12:36:51.000Z\",\n            \"UserId\": 1,\n            \"CommentCount\": 3,\n            \"User\": {\n                \"name\": \"Cahya Gumilang\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "CREATE FORUM",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "103811948_p0.png"
+								},
+								{
+									"key": "title",
+									"value": "title",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "desc",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/forums",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"forums"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CREATE FORUM",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "103811948_p0.png"
+										},
+										{
+											"key": "title",
+											"value": "title",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "desc",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/forums",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"forums"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "282"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"11a-7cIsHGt1QzHJPLCJbGkPZDLM1zM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 12:38:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Forum created successfully\",\n    \"data\": {\n        \"id\": 4,\n        \"title\": \"title\",\n        \"description\": \"desc\",\n        \"image\": \"https://storage.googleapis.com/countlories-bucket/Forum/20230610-193829.png\",\n        \"updatedAt\": \"2023-06-10T12:38:31.767Z\",\n        \"createdAt\": \"2023-06-10T12:38:31.767Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "EDIT FORUM",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "103677160_p0.jpg"
+								},
+								{
+									"key": "title",
+									"value": "Title Edit",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Desc Edit",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/forums/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"forums",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "EDIT FORUM",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "103677160_p0.jpg"
+										},
+										{
+											"key": "title",
+											"value": "Title Edit",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Desc Edit",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/forums/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"forums",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "76"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4c-xjtMaxNH9HogGYsXPx4O0GbpGqM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 12:51:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Forum updated successfully\",\n    \"data\": [\n        1\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE FORUM",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/forums/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"forums",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE FORUM",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/forums/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"forums",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-jbX7GvLCUr24ybUcHvw3aFpNIUI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 10 Jun 2023 12:52:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"message\": \"Forum deleted successfully\",\n    \"data\": 1\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "PREDICT IMAGE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/cahya/Downloads/download.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/predict",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"predict"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

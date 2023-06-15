@@ -56,3 +56,8 @@ This repository is used as working repository for cloud computing side of the Co
 
 ## Project Link
 [Countlories Landing Page](https://github.com/IpunkDkk/Countlories)
+
+## API Documentation
+[Countlories API Documentation](https://documenter.getpostman.com/view/7864923/2s93sc3XD1)
+or
+You can export the postman collection from this repository
