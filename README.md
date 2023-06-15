@@ -23,6 +23,7 @@ This repository is used as working repository for cloud computing side of the Co
     
     - Copy the `.env.example` file and rename it to `.env`
     - Edit all sample fields with the correct environment variables for the application server
+    - For `PREDICT_API_URL`, Use Local or Deployed link of API in `predict` branch in this repository
 
 * Database migration (using [Sequelize](http://docs.sequelizejs.com)):
     - Edit Database Configuration in `src/config/config.json`
@@ -38,6 +39,11 @@ This repository is used as working repository for cloud computing side of the Co
         ```bash
             npx sequelize-cli help
         ```
+* Database seed
+    - Run seeder for Menu data and Admin data (You can change Admin data in `src/seeders` admin seed)
+        ```bash
+            npx sequelize-cli db:seed:all
+        ```
 
 * Cloud Bucket Configuration
     - Copy the `example.serviceaccountkey.json` file and rename it to `serviceaccountkey.json`
@@ -47,6 +53,45 @@ This repository is used as working repository for cloud computing side of the Co
 ```bash
     npm start
 ```
+## Getting Started on App Engine
+1. Open cloud shell and set the project id
+    ```
+    gcloud config set project PROJECT_ID
+    ```
+2. Clone repository following this command
+    ```
+    git clone https://github.com/Gabrielstg02/Countlories-CC.git
+    ```
+3. Open git folder  
+    ```
+    cd Countlories-CC/
+    ```
+4. Setup env
+    - Copy the `.env.example` file and rename it to `.env`
+    - Edit all sample fields with the correct environment variables for the application server
+    - For `PREDICT_API_URL`, Use Deployed link of API in `predict` branch in this repository
+    - add this line to `.env`
+        ```
+            NODE_ENV=production
+        ```
+6. Setup Database
+    - Edit Database Configuration in `src/config/config.json`
+    - Install `sequelize-cli` in cloud shell
+    ```bash
+        npm install -g sequelize
+        npm install -g sequelize-cli
+    ```
+    - seed database
+    ```bash
+        npx sequelize-cli db:seed:all
+    ```
+7. Cloud Bucket Configuration
+    - Copy the `example.serviceaccountkey.json` file and rename it to `serviceaccountkey.json`
+    - Copy the content of your service account key to `serviceaccountkey.json` with the access of Google Storage Object Admin for your bucket
+8. Deploy App
+    ```bash
+        gcloud app deploy
+    ```
 
 ## Contact
 |            Member           				| Student ID |                                                       Contacts                                                      |
