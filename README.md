@@ -33,7 +33,7 @@ This branch is API for Predict with Machine Learning Model
     ```
 8. Run app
     ```
-    python main.py
+    python app.py
     ```
     or
     ```
