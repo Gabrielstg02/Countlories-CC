@@ -107,7 +107,7 @@ const createUserHistory = async (requestBody) => {
     const history = await History.create({
       UserId: requestBody.userId,
       MenuId: requestBody.menuId,
-      image: requestBody.image,
+      // image: requestBody.image,
     });
     responseSuccess.message = "Create User History Success";
     responseSuccess.data = history;
