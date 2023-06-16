@@ -76,7 +76,7 @@ const updateUser = async (id, requestBody) => {
   }
 };
 
-const getUserHistory = async (id) => {
+const getUserHistory = async (id, option = {}) => {
   var responseError = new ResponseClass.ErrorResponse();
   var responseSuccess = new ResponseClass.SuccessResponse();
   try {
@@ -89,6 +89,7 @@ const getUserHistory = async (id) => {
           model: db["Menu"],
         },
       ],
+      ...option,
     });
     responseSuccess.message = "Get User History Success";
     responseSuccess.data = history;

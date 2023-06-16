@@ -26,7 +26,7 @@ const predict = async (req, res) => {
         },
       });
     }
-    res.json({ menu: menu.data[0] });
+    res.json({ message: "Success", data: menu.data[0] });
   } catch (err) {
     console.log(err.message);
     const ErrorResponse = new ResponseClass.ErrorResponse();

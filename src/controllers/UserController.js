@@ -53,7 +53,10 @@ const updateUser = async (req, res) => {
 
 const getUserHistory = async (req, res) => {
   try {
-    const history = await UserService.getUserHistory(req.params.id);
+    const limit = req.query.limit ? Number(req.query.limit) : null;
+    const history = await UserService.getUserHistory(req.params.id, {
+      limit: limit,
+    });
     res.status(history.code).json(history);
   } catch (error) {
     console.log(error);
@@ -113,7 +116,10 @@ const getCurrentUser = async (req, res) => {
 
 const getCurrentUserHistory = async (req, res) => {
   try {
-    const history = await UserService.getUserHistory(req.userId);
+    const limit = req.query.limit ? Number(req.query.limit) : null;
+    const history = await UserService.getUserHistory(req.userId, {
+      limit: limit,
+    });
     res.status(history.code).json(history);
   } catch (error) {
     console.log(error);
