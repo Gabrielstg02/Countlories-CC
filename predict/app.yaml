@@ -1,3 +1,4 @@
 runtime: python311
 service: machine-learning
 entrypoint: gunicorn -b :$PORT app:app
+instance_class: F4
